@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import myReservations from './my-reservations/my-reservations';
+import myBookings from './my-bookings/my-bookings';
 
 const store = configureStore({
-  reducer: { myReservations },
+  reducer: { myBookings },
 });
 
 export default store;

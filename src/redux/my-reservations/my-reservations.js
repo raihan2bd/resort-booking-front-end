@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  myReservations: []
+  myReservations: [],
 };
 
 const myReservationsSlice = createSlice({

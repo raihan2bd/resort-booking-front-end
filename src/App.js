@@ -1,7 +1,13 @@
+import { Routes, Route } from 'react-router-dom';
+
+import MyBookingsPage from './pages/MyBookingsPage';
+
 const App = () => (
-  <div>
-    <h1>Hello World!</h1>
-  </div>
+  <>
+    <Routes>
+      <Route path="/my-bookings" element={<MyBookingsPage />} />
+    </Routes>
+  </>
 );
 
 export default App;

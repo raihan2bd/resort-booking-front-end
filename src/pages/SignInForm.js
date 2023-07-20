@@ -10,18 +10,13 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/auth/sign_in', {
+      await axios.post('http://localhost:3000/auth/sign_in', {
         user: {
           email,
           password,
         },
       });
-
-      // Handle success response (you can add your own logic here)
-      console.log('Sign-in successful!', response.data);
     } catch (error) {
-      // Handle error response
-      console.error('Sign-in failed.', error.response.data);
       setSignInError('Invalid email or password. Please try again.');
     }
   };

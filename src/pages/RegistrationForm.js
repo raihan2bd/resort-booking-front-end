@@ -10,7 +10,7 @@ const RegistrationForm = () => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3000/auth', {
+      await axios.post('http://localhost:3000/auth', {
         user: {
           name: fullName,
           email,
@@ -18,10 +18,8 @@ const RegistrationForm = () => {
           password_confirmation: password,
         },
       });
-
-      console.log('Registration successful!', response.data);
     } catch (error) {
-      console.error('Registration failed.', error.response.data);
+      // placeholder is error message is needed
     }
   };
 

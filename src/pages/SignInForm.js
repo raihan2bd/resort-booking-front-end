@@ -27,25 +27,29 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <h2>Email:</h2>
+    <form onSubmit={handleSubmit} className="container mt-4">
+      <div className="mb-3">
+        <h2 htmlFor="email" className="form-label">Email:</h2>
         <input
           type="email"
+          className="form-control"
+          id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
       </div>
-      <div>
-        <h2>Password:</h2>
+      <div className="mb-3">
+        <h2 htmlFor="password" className="form-label">Password:</h2>
         <input
           type="password"
+          className="form-control"
+          id="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      {signInError && <p>{signInError}</p>}
-      <button type="submit">Sign In</button>
+      {signInError && <p className="text-danger">{signInError}</p>}
+      <button type="submit" className="btn btn-primary">Sign In</button>
     </form>
   );
 };

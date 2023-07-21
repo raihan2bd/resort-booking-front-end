@@ -18,8 +18,10 @@ const RegistrationForm = () => {
           password_confirmation: password,
         },
       });
+
+      console.log('succes');
     } catch (error) {
-      // placeholder is error message is needed
+      console.log('Failed');
     }
   };
 

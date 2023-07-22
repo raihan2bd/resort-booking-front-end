@@ -5,7 +5,7 @@ export const fetchLogin = createAsyncThunk(
   'auth/Login',
   async ({ email, password }) => {
     try {
-      await axios.post('http://localhost:3000/auth/sign_in', {
+      await axios.post('http://localhost:4000/auth/sign_in', {
         user: {
           email,
           password,

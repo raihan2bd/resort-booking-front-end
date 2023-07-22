@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMyBookings } from '../redux/my-bookings/my-bookings';
+import { fetchLogout } from '../redux/auth/authSlice';
 
 import BookingItem from '../components/BookingItem/BookingItem';
 
 const MyBookingsPage = () => {
   const myBookings = useSelector((state) => state.myBookings);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchMyBookings());
@@ -47,6 +49,7 @@ const MyBookingsPage = () => {
     <section className="p-5">
       <h2 className="text-center">My Bookings</h2>
       <div className="container">{myBookingsContent}</div>
+      {auth.userId && <button type="button" onClick={() => dispatch(fetchLogout({ token: auth.token }))}>Logout</button>}
     </section>
   );
 };

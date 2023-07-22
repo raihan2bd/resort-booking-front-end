@@ -52,17 +52,20 @@
 
 // export default SignInForm;
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { fetchLogin } from '../redux/auth/authSlice';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [signInError] = useState('');
   const dispatch = useDispatch();
-  const isAuth = useSelector((state) => state.auth.isAuth);
-  console.log(isAuth);
+  const auth = useSelector((state) => state.auth);
+  const { userId } = auth;
+
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(fetchLogin({
@@ -70,6 +73,12 @@ const SignInForm = () => {
       password,
     }));
   };
+
+  useEffect(() => {
+    if (userId) {
+      navigate('/', { replace: true });
+    }
+  }, [userId]);
 
   return (
     <form onSubmit={handleSubmit} className="container mt-4">
@@ -93,7 +102,7 @@ const SignInForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      {signInError && <p className="text-danger">{signInError}</p>}
+      {auth.message && <p className="text-danger">{auth.message}</p>}
       <button type="submit" className="btn btn-primary">Sign In</button>
     </form>
   );

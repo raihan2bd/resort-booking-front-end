@@ -1,29 +1,50 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { fetchSignup } from '../redux/auth/authSlice';
 
 const RegistrationForm = () => {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    try {
-      await axios.post('http://localhost:3000/auth', {
-        user: {
-          name: fullName,
-          email,
-          password,
-          password_confirmation: password,
-        },
-      });
+    dispatch(fetchSignup({
+      user: {
+        name: fullName,
+        email,
+        password,
+        password_confirmation: password,
+      },
+    }));
 
-      console.log('succes');
-    } catch (error) {
-      console.log('Failed');
-    }
+    // try {
+    //   await axios.post('http://localhost:3000/auth', {
+    //     user: {
+    //       name: fullName,
+    //       email,
+    //       password,
+    //       password_confirmation: password,
+    //     },
+    //   });
+
+    //   console.log('succes');
+    // } catch (error) {
+    //   console.log('Failed');
+    // }
   };
+
+  useEffect(() => {
+    if (auth.token) {
+      navigate('/login', { replace: true });
+    }
+  }, [auth]);
 
   return (
     <form onSubmit={handleSubmit} className="container mt-4">

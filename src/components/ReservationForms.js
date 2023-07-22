@@ -24,3 +24,5 @@ const ReservationForm = ({selectedResortId, resortSelected}) => {
 
   
 }
+
+export default ReservationForm

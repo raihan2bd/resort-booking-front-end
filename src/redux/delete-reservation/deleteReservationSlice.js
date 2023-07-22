@@ -11,7 +11,7 @@ export const deleteReservation = createAsyncThunk('reservations/deleteReservatio
     return response.data;
 });
 
-const deleteReservationSlice = createSlice({
+const deleteReservationsSlice = createSlice({
     name: 'reservations',
     initialState: [],
     reducers: {},
@@ -26,4 +26,4 @@ const deleteReservationSlice = createSlice({
     },
   });
   
-  export default deleteReservationSlice.reducer;
+  export default deleteReservationsSlice.reducer;

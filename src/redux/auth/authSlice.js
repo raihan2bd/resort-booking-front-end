@@ -1,6 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAction, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+
+export const logoutAction = createAction('auth/logout');
 
 const logout = () => {
   localStorage.removeItem('token');
@@ -15,6 +17,7 @@ const logout = () => {
     role: null,
     expirationTime: null,
     message: null,
+    loadingAuth: false,
   };
 };
 
@@ -174,6 +177,7 @@ const myAuthSlice = createSlice({
         role: payload.role,
         expirationTime: payload.expirationTime,
         message: payload.message,
+        loadingAuth: false,
       };
 
       return updatedState;
@@ -188,6 +192,7 @@ const myAuthSlice = createSlice({
         role: payload.role,
         expirationTime: payload.expirationTime,
         message: payload.message,
+        loadingAuth: false,
       };
       return updatedState;
     });
@@ -195,13 +200,21 @@ const myAuthSlice = createSlice({
     builder.addCase(retriveToken.fulfilled, (state, { payload }) => {
       const updatedState = {
         ...state,
-        loadingAuth: false,
         isAuth: payload.isAuth,
         token: payload.token,
         userId: payload.userId,
         role: payload.role,
         expirationTime: payload.expirationTime,
         message: payload.message,
+        loadingAuth: false,
+      };
+      return updatedState;
+    });
+
+    builder.addCase(logoutAction, (state) => {
+      const updatedState = {
+        ...state,
+        ...logout(),
       };
       return updatedState;
     });

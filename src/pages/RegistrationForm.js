@@ -14,7 +14,7 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     dispatch(fetchSignup({
       user: {
         name: fullName,

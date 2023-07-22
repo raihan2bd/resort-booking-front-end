@@ -7,6 +7,7 @@ import { retriveToken } from './redux/auth/authSlice';
 import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';
+import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
 
 // set base api url
@@ -39,6 +40,7 @@ const App = () => {
           path="/login"
           element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
         />
+        <Route path="/" element={<MainPage />} />
       </Routes>
     </>
   );

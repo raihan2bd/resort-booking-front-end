@@ -13,7 +13,7 @@ const MainPage = () => {
         const response = await axios.get('http://localhost:4000/resorts');
         setResorts(response.data);
       } catch (error) {
-        console.error('Error fetching resorts:', error);
+        // space reserved for testing errors
       }
     };
 

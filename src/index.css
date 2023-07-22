@@ -20,3 +20,72 @@ h5,
 h6 {
   font-weight: bold;
 }
+
+/* Add this CSS to your existing styles or create a new CSS file */
+.container {
+  text-align: center;
+}
+
+.resorts-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.resorts-list {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.resort-item {
+  flex: 0 0 33.33%; /* Show 3 resorts at a time */
+  padding: 20px;
+}
+
+.img-thumbnail {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: none;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.limegreen-button {
+  background-color: limegreen;
+  color: white; /* Optional: Set the text color for better contrast */
+}
+
+.gray-button {
+  background-color: gray;
+  color: white; /* Optional: Set the text color for better contrast */
+}
+
+.prev-button {
+  left: 0;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  width: 3%;
+}
+
+.next-button {
+  right: 0;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  width: 3%;
+}
+
+#list {
+  padding-top: 8%;
+}
+
+.ResortSelect {
+  color: rgba(128, 128, 128, 0.658);
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const MainPage = () => {
   const [resorts, setResorts] = useState([]);
@@ -38,7 +39,7 @@ const MainPage = () => {
           <>
             <div className="resorts-list" style={{ transform: `translateX(-${currentIndex * 33.33}%)` }}>
               {resorts.map((resort) => (
-                <div key={resort.id} className="resort-item">
+                <Link key={resort.id} to={`/details/${resort.id}`} className="resort-item">
                   <img
                     src={resort.image_url}
                     alt={resort.name}
@@ -58,7 +59,7 @@ const MainPage = () => {
                     <strong>Guests:</strong>
                     {resort.guests_amount}
                   </p>
-                </div>
+                </Link>
               ))}
             </div>
           </>

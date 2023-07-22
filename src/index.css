@@ -21,7 +21,8 @@ h6 {
   font-weight: bold;
 }
 
-.bg-success, .btn-success{
+.bg-success,
+.btn-success {
   background-color: #99c110 !important;
 }
 
@@ -29,7 +30,8 @@ h6 {
   color: #99c110 !important;
 }
 
-.bg-orange, .btn-orange {
+.bg-orange,
+.btn-orange {
   background-color: #ffb400;
 }
 

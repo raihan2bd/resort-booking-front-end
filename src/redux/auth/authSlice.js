@@ -135,6 +135,7 @@ export const fetchLogin = createAsyncThunk(
 );
 
 const initialState = {
+  loadingAuth: true,
   isAuth: false,
   token: null,
   userId: null,
@@ -187,6 +188,7 @@ const myAuthSlice = createSlice({
     builder.addCase(retriveToken.fulfilled, (state, { payload }) => {
       const updatedState = {
         ...state,
+        loadingAuth: false,
         isAuth: payload.isAuth,
         token: payload.token,
         userId: payload.userId,

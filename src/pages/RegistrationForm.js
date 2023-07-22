@@ -23,28 +23,13 @@ const RegistrationForm = () => {
         password_confirmation: password,
       },
     }));
-
-    // try {
-    //   await axios.post('http://localhost:3000/auth', {
-    //     user: {
-    //       name: fullName,
-    //       email,
-    //       password,
-    //       password_confirmation: password,
-    //     },
-    //   });
-
-    //   console.log('succes');
-    // } catch (error) {
-    //   console.log('Failed');
-    // }
   };
 
   useEffect(() => {
     if (auth.token) {
       navigate('/login', { replace: true });
     }
-  }, [auth]);
+  }, [auth, navigate]);
 
   return (
     <form onSubmit={handleSubmit} className="container mt-4">
@@ -78,6 +63,7 @@ const RegistrationForm = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
+      {auth.message && <p className="text-danger">{auth.message}</p>}
       <button type="submit" className="btn btn-primary">Register</button>
     </form>
   );

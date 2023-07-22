@@ -21,17 +21,24 @@ const logout = () => {
 export const fetchSignup = createAsyncThunk(
   'auth/sign-up',
   async ({ user }) => {
-    console.log(user);
     try {
       const response = await axios.post('/signup', { user: { ...user } });
-      console.log(response);
+
+      if (response.status !== 200) {
+        throw new Error('something went wrong. Please try again.');
+      }
       return {
         token: response.headers.authorization,
+        message: 'Your account is created successfully! Please login',
       };
     } catch (error) {
-      console.log(error);
+      let errorMessage = 'Something went wrong. Please input valid data and try again';
+      if (error.response.data.status.message) {
+        errorMessage = error.response.data.status.message;
+      }
       return {
         token: null,
+        message: errorMessage,
       };
     }
   },
@@ -46,7 +53,7 @@ export const fetchLogout = createAsyncThunk(
       };
       await axios.delete('/logout', { headers });
     } catch (error) {
-      console.log(error);
+      return logout();
     }
 
     return logout();
@@ -56,7 +63,6 @@ export const fetchLogout = createAsyncThunk(
 export const retriveToken = createAsyncThunk(
   'auth/retrive-token', () => {
     const token = localStorage.getItem('token');
-    console.log(token);
     if (!token) {
       return logout();
     }
@@ -153,6 +159,7 @@ const myAuthSlice = createSlice({
       const updatedState = {
         ...state,
         token: payload.token,
+        message: payload.message,
       };
 
       return updatedState;

@@ -5,3 +5,8 @@ export const fetchReservations = createAsyncThunk('reservations/fetchReservation
     const response = await axios.get('/reservations', { withCredentials: true });
     return response.data;
 });
+
+export const deleteReservation = createAsyncThunk('reservations/deleteReservation', async (bookingId) => {
+    const response = await axios.delete(`/reservations/${bookingId}`, { withCredentials: true });
+    return response.data;
+});

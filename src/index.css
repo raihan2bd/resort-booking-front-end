@@ -21,6 +21,24 @@ h6 {
   font-weight: bold;
 }
 
+.bg-success,
+.btn-success {
+  background-color: #99c110 !important;
+}
+
+.text-success {
+  color: #99c110 !important;
+}
+
+.bg-orange,
+.btn-orange {
+  background-color: #ffb400;
+}
+
+.text-orange {
+  color: #ffb400;
+}
+
 /* Add this CSS to your existing styles or create a new CSS file */
 .container {
   text-align: center;

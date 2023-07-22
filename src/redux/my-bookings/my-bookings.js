@@ -1,65 +1,30 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
-const API_BASE_URL = 'http://localhost:4000';
+import axios from 'axios';
+import { logoutAction } from '../auth/authSlice';
 
 export const fetchMyBookings = createAsyncThunk(
   'bookings/my-bookings',
-  async () => {
+  async ({ token }, { dispatch }) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/my-bookings`);
+      const headers = {
+        Authorization: token,
+      };
+      const response = await axios.get('/bookings', { headers });
       if (response.status !== 200) {
         throw new Error('Some thing went wrong!');
       }
-      const result = response.json();
+      const result = response.data;
 
       return {
-        myBookings: result.data,
+        myBookings: result,
         loading: false,
         error: null,
       };
-    } catch (err) {
-      return {
-        loading: false,
-        error: null,
-        myBookings: [
-          {
-            id: 1,
-            name: 'Lorem ipsum 1',
-            address: 'Khulna, Satkhira',
-            start_date: '2023-07-18',
-            end_date: '2023-07-28',
-          },
-          {
-            id: 2,
-            name: 'Lorem ipsum 2',
-            address: 'Khulna, Satkhira',
-            start_date: '2023-07-18',
-            end_date: '2023-07-28',
-          },
-          {
-            id: 3,
-            name: 'Lorem ipsum 3',
-            address: 'Khulna, Satkhira',
-            start_date: '2023-07-18',
-            end_date: '2023-07-28',
-          },
-          {
-            id: 4,
-            name: 'Lorem ipsum 4',
-            address: 'Khulna, Satkhira',
-            start_date: '2023-07-18',
-            end_date: '2023-07-28',
-          },
-          {
-            id: 5,
-            name: 'Lorem ipsum 5',
-            address: 'Khulna, Satkhira',
-            start_date: '2023-07-18',
-            end_date: '2023-07-28',
-          },
-        ],
-      };
-      // return thunkAPI.rejectWithValue({ error: err.message })
+    } catch (error) {
+      if (error.response.status === 401) {
+        dispatch(logoutAction());
+      }
+      return { error: error.response.data.error ? error.response.data.error : 'Something went wrong. Please try again', myBookings: [], loading: false };
     }
   },
 );
@@ -95,18 +60,16 @@ const myBookingsSlice = createSlice({
       return updatedState;
     });
 
-    builder.addCase(fetchMyBookings.rejected, (state, { payload }) => {
-      const updatedState = {
-        ...state,
-        loading: payload.loading,
-        error: payload.error,
-        myBookings: payload.myBookings,
-      };
-      return updatedState;
-    });
+    // builder.addCase(fetchMyBookings.rejected, (state, { payload }) => {
+    //   const updatedState = {
+    //     ...state,
+    //     loading: payload.loading,
+    //     error: payload.error,
+    //     myBookings: payload.myBookings,
+    //   };
+    //   return updatedState;
+    // });
   },
 });
-
-export const myBookingsActions = myBookingsSlice.actions;
 
 export default myBookingsSlice.reducer;

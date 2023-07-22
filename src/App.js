@@ -11,7 +11,7 @@ const App = () => (
       <Route path="/my-bookings" element={<MyBookingsPage />} />
       <Route path="/register" element={<RegistrationForm />} />
       <Route path="/signIn" element={<SignInForm />} />
-      <Route path="/Reservation-form" element={<ReservationForm />} />
+      <Route path="/reservation-form" element={<ReservationForm />} />
     </Routes>
   </>
 );

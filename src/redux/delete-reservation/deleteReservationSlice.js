@@ -10,3 +10,11 @@ export const deleteReservation = createAsyncThunk('reservations/deleteReservatio
     const response = await axios.delete(`/reservations/${bookingId}`, { withCredentials: true });
     return response.data;
 });
+
+const deleteReservationSlice = createSlice({
+    name: 'reservations',
+    initialState: [],
+    reducers: {}
+  });
+  
+  export default deleteReservationSlice.reducer;

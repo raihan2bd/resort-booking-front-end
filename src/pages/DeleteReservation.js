@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchReservations, deleteReservation } from '../redux/delete-reservation/deleteReservationSlice';
+import '../style/DeleteReservation.css';
 
 const DeleteReservation = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const DeleteReservation = () => {
       {reservations.length === 0 ? (
         <p>You have not made any reservation</p>
       ) : (
-        <table className="table table-bordered table-striped">
+        <table className="table table_width table-bordered table-striped">
           <thead>
             <tr>
               <th>Reservation</th>
@@ -33,10 +34,10 @@ const DeleteReservation = () => {
           </thead>
           <tbody>
             {reservations.map((reservation) => (
-              <tr key={reservation.id}>
+              <tr className="table_strip" key={reservation.id}>
                 <td>{reservation.name}</td>
                 <td>
-                  <button onClick={() => handleDelete(reservation.id)} type="submit">Delete</button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(reservation.id)} type="submit">Delete</button>
                 </td>
               </tr>
             ))}

@@ -3,28 +3,32 @@ import axios from 'axios';
 
 const url = 'http://localhost:4000';
 
-export const fetchReservations = createAsyncThunk('reservations/fetchReservations', async (_, { rejectWithValue }) => {
+export const fetchReservations = createAsyncThunk('bookings/fetchReservations', async (_, { rejectWithValue }) => {
   try {
-    const response = await axios.get(`${url}/reservations`, { withCredentials: true });
+    const response = await axios.get(`${url}/bookings`, { withCredentials: true });
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);
   }
 });
 
-export const deleteReservation = createAsyncThunk('reservations/deleteReservation', async (userId, { rejectWithValue }) => {
+export const deleteReservation = createAsyncThunk('bookings/deleteReservation', async (userId, { rejectWithValue }) => {
   try {
-    const response = await axios.delete(`${url}/reservations/${userId}`, { withCredentials: true });
+    const response = await axios.delete(`${url}/bookings/${userId}`, { withCredentials: true });
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);
   }
 });
 
-const deletereservationsSlice = createSlice({
+const reservationsSlice = createSlice({
   name: 'reservations',
   initialState: {
-    reservations: [],
+    reservations: [
+      { id: 1, name: 'Reservation 1' },
+      { id: 2, name: 'Reservation 2' },
+      { id: 3, name: 'Reservation 3' },
+    ],
     status: 'idle',
     error: null,
   },
@@ -58,4 +62,4 @@ const deletereservationsSlice = createSlice({
   },
 });
 
-export default deletereservationsSlice.reducer;
+export default reservationsSlice.reducer;

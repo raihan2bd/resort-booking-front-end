@@ -20,11 +20,11 @@ const DeleteReservation = () => {
   };
   return (
     <div>
-      <h3 className="delete_title">My Reservations</h3>
+      <h3 className="text-center mb-3 delete_title">My Reservations</h3>
       {reservations.length === 0 ? (
         <p>You have not made any reservation</p>
       ) : (
-        <table>
+        <table className="table table-bordered table-striped">
           <thead>
             <tr>
               <th>Reservation</th>

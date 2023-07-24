@@ -1,0 +1,12 @@
+.table_width {
+  width: 80% !important;
+  margin: 0 auto;
+}
+
+.table-striped tbody tr:nth-of-type(odd) td {
+  background-color: #abf7b1;
+}
+
+.delete_btn {
+  border: 1px solid black;
+}

@@ -8,7 +8,7 @@ import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';
 import Reserve from './components/Reserve';
-// import ReservationForm from './components/ReservationForms';
+import DeleteReservation from './pages/DeleteReservation';
 import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
 
@@ -43,8 +43,12 @@ const App = () => {
           element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
         />
         <Route path="/" element={<MainPage />} />
+
         <Route path="/reservation_form" element={<Reserve />} />
-      </Routes>
+        <Route path="/delete-reservations" element={<DeleteReservation />} />
+     
+    </Routes>
+        
     </>
   );
 };

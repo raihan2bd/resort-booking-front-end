@@ -39,11 +39,7 @@ export const deleteReservation = createAsyncThunk('bookings/deleteReservation', 
 const reservationsSlice = createSlice({
   name: 'reservations',
   initialState: {
-    reservations: [
-      // { id: 1, name: 'Reservation 1' },
-      // { id: 2, name: 'Reservation 2' },
-      // { id: 3, name: 'Reservation 3' },
-    ],
+    reservations: [],
     status: 'idle',
     error: null,
   },

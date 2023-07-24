@@ -46,9 +46,9 @@ const App = () => {
 
         <Route path="/reservation_form" element={<Reserve />} />
         <Route path="/delete-reservations" element={<DeleteReservation />} />
-     
-    </Routes>
-        
+
+      </Routes>
+
     </>
   );
 };

@@ -1,12 +1,12 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const RESORTS = 'resorts'
+const RESORTS = 'resorts';
 
 const initialState = {
   resorts: [],
   loading: true,
-  error: false
+  error: false,
 };
 
 export const fetchResorts = createAsyncThunk(
@@ -14,14 +14,13 @@ export const fetchResorts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get('/resorts');
-      console.log(res, 'the response')
+      console.log(res, 'the response');
       return { resorts: res.data };
     } catch (error) {
       return rejectWithValue(error);
     }
   },
 
-  
 );
 
 export default (state = initialState, action) => {
@@ -30,19 +29,19 @@ export default (state = initialState, action) => {
       return {
         loading: true,
         resorts: [],
-        error: false
+        error: false,
       };
     case `${RESORTS}/fulfilled`:
       return {
         loading: false,
         resorts: action.payload,
-        error: false
+        error: false,
       };
     case `${RESORTS}rejected`:
       return {
         loading: false,
         resorts: [],
-        error: true
+        error: true,
       };
     default:
       return { ...state };

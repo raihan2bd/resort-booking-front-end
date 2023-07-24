@@ -40,10 +40,11 @@ const App = () => {
         />
         <Route
           path="/login"
-          element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}        />
+          element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
+        />
         <Route path="/" element={<MainPage />} />
         <Route path="/reservation_form" element={<Reserve />} />
-    </Routes>
+      </Routes>
     </>
   );
 };

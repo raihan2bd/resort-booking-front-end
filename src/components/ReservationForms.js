@@ -1,26 +1,24 @@
-import { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import { fetchResorts } from "../redux/resorts/resortsSlice";
-import { createBookings } from "../redux/reservation/bookingsSlice";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useState, useEffect } from 'react';
+// import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchResorts } from '../redux/resorts/resortsSlice';
+import { createBookings } from '../redux/reservation/bookingsSlice';
 
 const ReservationForm = () => {
- 
   const dispatch = useDispatch();
-  const {resorts, loading, error} = useSelector((state) => state.resortsSlice);
+  const { resorts, loading } = useSelector((state) => state.resortsSlice);
   const token = useSelector((state) => state.auth.token);
   useEffect(() => {
-    dispatch(fetchResorts()) 
+    dispatch(fetchResorts());
   }, [dispatch]);
 
   const [formData, setFormData] = useState({
     address: '',
     startDate: '',
     endDate: '',
-    resort_id: ''
+    resort_id: '',
   });
-  
+
   const locations = [
     { id: 1, name: 'Madrid' },
     { id: 2, name: 'Capetown' },
@@ -28,17 +26,15 @@ const ReservationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const bookings = {
-    //  formData
-    // }
-    console.log(formData)
-    dispatch(createBookings({token, formData}));
+
+    console.log(formData);
+    dispatch(createBookings({ token, formData }));
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -46,24 +42,24 @@ const ReservationForm = () => {
       className="d-flex flex-column align-items-center g-4"
     >
       <div className="row g-2 mb-3">
-       
-          <div className="col select-wrapper">
-            <select
-              className="form-select"
-              value={formData.resort_id}
-              onChange={handleChange}
-              name="resort_id"
-            >
-              <option value="">Select a resort</option>
-              {loading ? (<li>loading</li>) :
-              resorts.resorts.map((resort) => (
+
+        <div className="col select-wrapper">
+          <select
+            className="form-select"
+            value={formData.resort_id}
+            onChange={handleChange}
+            name="resort_id"
+          >
+            <option value="">Select a resort</option>
+            {loading ? (<li>loading</li>)
+              : resorts.resorts.map((resort) => (
                 <option key={resort.id} value={resort.id}>
                   {resort.name}
                 </option>
               ))}
-            </select>
-          </div>
-       
+          </select>
+        </div>
+
         <div className="col select-div">
           <select
             className="form-select"
@@ -80,16 +76,18 @@ const ReservationForm = () => {
           </select>
         </div>
       </div>
-      <label htmlFor="dateInput">Start Date:</label>
+      <option value="">Start Date:</option>
       <input
+        id="dateInput"
         className="form-control mb-3"
         type="date"
         value={formData.startDate}
         onChange={handleChange}
         name="startDate"
       />
-       <label htmlFor="dateInput">End Date:</label>
+      <option value="">End Date:</option>
       <input
+        id="dateInput"
         className="form-control mb-3"
         type="date"
         value={formData.endDate}
@@ -101,16 +99,6 @@ const ReservationForm = () => {
       </button>
     </form>
   );
-}
-
-ReservationForm.propTypes = {
-  selectedResortId: PropTypes.number,
-  resortSelected: PropTypes.bool,
 };
 
-ReservationForm.defaultProps = {
-  selectedResortId: 0,
-  resortSelected: false,
-};
-
-export default ReservationForm
+export default ReservationForm;

@@ -1,4 +1,4 @@
-import ReservationForm from "./ReservationForms";
+import ReservationForm from './ReservationForms';
 
 const Reserve = () => (
   <div className="reservation-container">

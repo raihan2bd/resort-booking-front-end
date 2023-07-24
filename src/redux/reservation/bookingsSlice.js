@@ -1,43 +1,42 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const BOOKINGS = 'bookings'
+const BOOKINGS = 'bookings';
 
 const initialState = {
   bookings: [],
   loading: true,
-  error: false
+  error: false,
 };
 
 export const createBookings = createAsyncThunk(
   BOOKINGS,
-  async ({token, formData}, { rejectWithValue }) => {
+  async ({ token, formData }, { rejectWithValue }) => {
     try {
-      console.log('I am working', token)
+      console.log('I am working', token);
       const config = {
         headers: {
-          Authorization: token
-        }
-      }
+          Authorization: token,
+        },
+      };
 
       const booking = {
         address: formData.address,
         start_date: formData.startDate,
         end_date: formData.endDate,
-        resort_id: formData.resort_id
-      }
+        resort_id: formData.resort_id,
+      };
 
-      console.log("form", formData)
-      console.log("booking data", booking)
+      console.log('form', formData);
+      console.log('booking data', booking);
       const res = await axios.post('/bookings', booking, config);
       return { bookings: res.data };
     } catch (error) {
-      console.log(error)
+      console.log(error);
       return rejectWithValue(error);
     }
   },
 
-  
 );
 
 export default (state = initialState, action) => {
@@ -46,19 +45,19 @@ export default (state = initialState, action) => {
       return {
         loading: true,
         bookings: [],
-        error: false
+        error: false,
       };
     case `${BOOKINGS}/fulfilled`:
       return {
         loading: false,
         bookings: action.payload,
-        error: false
+        error: false,
       };
     case `${BOOKINGS}rejected`:
       return {
         loading: false,
         bookings: [],
-        error: true
+        error: true,
       };
     default:
       return { ...state };

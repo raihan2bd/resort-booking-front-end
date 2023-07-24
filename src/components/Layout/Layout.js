@@ -30,14 +30,15 @@ const Layout = ({ children }) => (
         ©
         {new Date().getFullYear()}
         {' '}
-        Michael Kithinji
+        Our platform services
       </p>
     </nav>
     <main className="col-md-9 col-lg-9">
       <header>
-        <div className="menu">...</div>
-        <div className="somehing">Logo</div>
-        <div className="something">Login or Logout</div>
+        <div className="menu">Welcome to Our Platform</div>
+        <div className="image">
+          {/* <img src={logo} alt="" /> */}
+        </div>
       </header>
       <div className="main-content">
         {children}

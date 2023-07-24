@@ -1,4 +1,3 @@
-
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -12,7 +11,6 @@ import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
 import Layout from './components/Layout/Layout';
 import './components/Layout/Layout.css';
-
 
 // set base api url
 axios.defaults.baseURL = 'http://localhost:4000';
@@ -30,8 +28,7 @@ const App = () => {
   }
 
   return (
-    <>
-      <Layout />
+    <Layout>
       <Routes>
         <Route
           path="/my-bookings"
@@ -47,7 +44,7 @@ const App = () => {
         />
         <Route path="/" element={<MainPage />} />
       </Routes>
-    </>
+    </Layout>
   );
 };
 

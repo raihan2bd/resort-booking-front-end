@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchResorts } from '../redux/resorts/resortsSlice';
 import { createBookings } from '../redux/reservation/bookingsSlice';

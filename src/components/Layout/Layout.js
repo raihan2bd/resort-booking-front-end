@@ -22,9 +22,10 @@ const Layout = ({ children }) => (
 
       <div className="logos">
         {logos.map((logo) => (
-          <>{logo}</>
+          <div key={logo.id}>{logo}</div>
         ))}
       </div>
+
       <p>
         {' '}
         ©

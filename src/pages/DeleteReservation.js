@@ -7,11 +7,6 @@ const DeleteReservation = () => {
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservationsReducer.reservations);
   const token = useSelector((state) => state.auth.token);
-  // const reservations = useSelector((state) => {
-  //   console.log('State:', state);
-  //   console.log('Reservations:', state.reservations);
-  //   return state.reservations;
-  // });
 
   useEffect(() => {
     dispatch(fetchReservations({ token }));

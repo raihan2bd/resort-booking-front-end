@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchResorts } from '../redux/resorts/resortsSlice';
 import { createBookings } from '../redux/reservation/bookingsSlice';
+import { useNavigate } from 'react-router-dom';
+
 
 const ReservationForm = () => {
   const dispatch = useDispatch();
@@ -23,11 +25,15 @@ const ReservationForm = () => {
     { id: 2, name: 'Capetown' },
   ];
 
+  
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log(formData);
     dispatch(createBookings({ token, formData }));
+    navigate(("/my-bookings"));
+   
   };
 
   const handleChange = (e) => {

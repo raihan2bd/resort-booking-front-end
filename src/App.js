@@ -7,6 +7,7 @@ import { retriveToken } from './redux/auth/authSlice';
 import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';
+import ReservationForm from './components/ReservationForms';
 import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
 
@@ -38,10 +39,10 @@ const App = () => {
         />
         <Route
           path="/login"
-          element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
-        />
+          element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}        />
         <Route path="/" element={<MainPage />} />
-      </Routes>
+        <Route path="/reservation_form" element={<ReservationForm />} />
+    </Routes>
     </>
   );
 };

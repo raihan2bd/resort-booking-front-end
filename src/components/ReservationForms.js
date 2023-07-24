@@ -64,7 +64,7 @@ const ReservationForm = () => {
             </select>
           </div>
        
-        <div className="col select-wrapper">
+        <div className="col select-div">
           <select
             className="form-select"
             value={formData.address}

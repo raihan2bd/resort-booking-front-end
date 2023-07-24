@@ -39,7 +39,7 @@ const ResortDetailsPage = () => {
         <div className="row">
           <div className="col-md-6 col-lg-6">
             <div className="p-3">
-              <div className="resort-image">
+              <div className="resort-image overflow-hidden">
                 <img src={resortDetails.image_url} alt={resortDetails.name} />
               </div>
             </div>

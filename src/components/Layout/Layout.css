@@ -8,7 +8,7 @@ nav {
   
   nav img {
     margin: 30px 0;
-    max-width: 30%;
+    max-width: 20%;
     height: auto;
   }
   
@@ -26,7 +26,7 @@ nav {
   
   .link a {
     text-decoration: none;
-    color: #000;
+    color: #000000;
     font-size: 18px;
     font-weight: 700;
     height: 100%;
@@ -36,8 +36,9 @@ nav {
   }
   
   .link .active {
-    background-color: #0fbf67;
-    color: #fff;
+    background-color: #32ee90;
+    color: #f1ecec;
+    width: 10%;
   }
   
   .logos {

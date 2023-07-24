@@ -11,14 +11,25 @@ const initialState = {
 
 export const createBookings = createAsyncThunk(
   BOOKINGS,
-  async (token, bookings, { rejectWithValue }) => {
+  async ({token, formData}, { rejectWithValue }) => {
     try {
+      console.log('I am working', token)
       const config = {
         headers: {
           Authorization: token
         }
       }
-      const res = await axios.post('/bookings', config, bookings);
+
+      const booking = {
+        address: formData.address,
+        start_date: formData.startDate,
+        end_date: formData.endDate,
+        resort_id: formData.resort_id
+      }
+
+      console.log("form", formData)
+      console.log("booking data", booking)
+      const res = await axios.post('/bookings', booking, config);
       return { bookings: res.data };
     } catch (error) {
       console.log(error)

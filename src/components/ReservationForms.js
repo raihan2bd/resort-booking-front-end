@@ -10,9 +10,6 @@ const ReservationForm = () => {
   const dispatch = useDispatch();
   const {resorts, loading, error} = useSelector((state) => state.resortsSlice);
   const token = useSelector((state) => state.auth.token);
-  console.log(loading, 'loading details')
-  console.log(resorts, 'resorts details')
-  console.log(error, 'error details')
   useEffect(() => {
     dispatch(fetchResorts()) 
   }, [dispatch]);
@@ -34,7 +31,8 @@ const ReservationForm = () => {
     // const bookings = {
     //  formData
     // }
-    dispatch(createBookings(token));
+    console.log(formData)
+    dispatch(createBookings({token, formData}));
   };
 
   const handleChange = (e) => {
@@ -57,7 +55,7 @@ const ReservationForm = () => {
               name="resort_id"
             >
               <option value="">Select a resort</option>
-              {loading ? (<p>loading</p>) :
+              {loading ? (<li>loading</li>) :
               resorts.resorts.map((resort) => (
                 <option key={resort.id} value={resort.id}>
                   {resort.name}

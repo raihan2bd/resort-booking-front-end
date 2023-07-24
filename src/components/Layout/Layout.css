@@ -1,9 +1,23 @@
 nav {
-  display: flex;
   flex-direction: column;
   justify-content: flex-start;
   min-width: 20vw;
   border-right: 1px solid #ccc;
+  position: relative;
+}
+
+.navigation {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+.nav-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px
 }
 
 nav img {
@@ -61,4 +75,16 @@ nav p {
   font-size: larger;
 }
 
+@media (min-width: 768px) {
+  .navigation {
+    display: flex;
+  }
 
+  .show {
+    display: none;
+  }
+
+  .full-screen {
+    width: 100% !important;
+  }
+}

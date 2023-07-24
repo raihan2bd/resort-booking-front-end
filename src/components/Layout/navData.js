@@ -1,6 +1,3 @@
-import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-
 const links = [
   {
     id: 1,
@@ -25,11 +22,3 @@ const links = [
 ];
 
 export default links;
-
-export const logos = [
-  <FaIcons.FaTwitter key="1" />,
-  <FaIcons.FaFacebook key="2" />,
-  <FaIcons.FaGooglePlus key="3" />,
-  <FaIcons.FaVimeo key="4" />,
-  <FaIcons.FaPinterest key="5" />,
-];

@@ -1,38 +1,45 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Make sure you have the react-icons library imported
-import links, { logos } from './navData';
-import logoImage from '../../images/booking.png'; // Rename this variable to avoid conflict with the logos array variable
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  FaTwitter,
+  FaFacebook,
+  FaGooglePlus,
+  FaVimeo,
+  FaPinterest,
+  FaBars,
+  FaTimes,
+  FaUserCircle,
+} from 'react-icons/fa';
+import links from './navData';
+import logoImage from '../../images/logo.jpeg';
+import { fetchLogout } from '../../redux/auth/authSlice';
 
 const Layout = ({ children }) => {
-  const navRef = useRef();
+  const [showNav, setShowNav] = useState(false);
+
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const showNavbar = () => {
-    navRef.current.classList.toggle(
-      'responsive_nav',
-    );
+    setShowNav((preState) => !preState);
   };
+
+  const navClasses = showNav ? 'col-md-3 col-lg-3 shadow vh-100 navigation show' : 'col-md-3 col-lg-3 shadow vh-100 navigation';
+  const mainClasses = showNav ? 'col-md-9 col-lg-9 full-screen' : 'col-md-9 col-lg-9';
 
   return (
     <div className="row">
-      <nav className="col-md-3 col-lg-3 shadow vh-100">
+      <nav className={navClasses}>
         <button
           type="button"
-          className="nav-btn nav-close-btn"
+          className="nav-btn nav-close-btn btn btn-outline-dark px-2 py-1"
           onClick={showNavbar}
         >
           <FaTimes />
         </button>
-
-        <button
-          type="button"
-          className="nav-btn"
-          onClick={showNavbar}
-        >
-          <FaBars />
-        </button>
-        <div className="logo-image">
+        <div className="logo-image mt-3">
           <img src={logoImage} alt="" />
         </div>
         <ul>
@@ -46,9 +53,26 @@ const Layout = ({ children }) => {
         </ul>
 
         <div className="logos">
-          {logos.map((logo) => (
-            <div key={logo.id}>{logo}</div>
-          ))}
+          <div>
+            <FaTwitter />
+            {' '}
+          </div>
+          <div>
+            <FaFacebook />
+            {' '}
+          </div>
+          <div>
+            <FaGooglePlus />
+            {' '}
+          </div>
+          <div>
+            <FaVimeo />
+            {' '}
+          </div>
+          <div>
+            <FaPinterest />
+            {' '}
+          </div>
         </div>
 
         <p>
@@ -59,16 +83,30 @@ const Layout = ({ children }) => {
           Our platform services
         </p>
       </nav>
-      <main className="col-md-9 col-lg-9">
-        <header>
-          <div className="menu">Welcome to Our Platform</div>
-          <div className="image">
-            {/* <img src={logoImage} alt="" /> */}
+      <main className={mainClasses}>
+        <header className="bg-success text-light px-5 py-3">
+          <div className="icons d-flex justify-content-between">
+            <button type="button" className="btn btn-outline-light" onClick={showNavbar}>
+              <FaBars />
+            </button>
+            {!auth.userId ? (
+              <a
+                href="/login"
+                className="btn btn btn-outline-light d-block"
+              >
+                <FaUserCircle />
+              </a>
+            ) : (
+              <button
+                type="button"
+                onClick={() => dispatch(fetchLogout({ token: auth.token }))}
+              >
+                Logout
+              </button>
+            )}
           </div>
         </header>
-        <div className="main-content">
-          {children}
-        </div>
+        <div className="main-content">{children}</div>
       </main>
     </div>
   );

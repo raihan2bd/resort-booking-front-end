@@ -35,27 +35,44 @@ const ResortDetailsPage = () => {
     );
   } else {
     resortDetailsContent = (
-      <div className='container p-0'>
-      <div className="row">
-        <div className="col-md-6 col-lg-6">
-          <div className="p-3">
-            <div className="resort-image">
-              <img src={resortDetails.image_url} />
+      <div className="container p-0">
+        <div className="row">
+          <div className="col-md-6 col-lg-6">
+            <div className="p-3">
+              <div className="resort-image">
+                <img src={resortDetails.image_url} alt={resortDetails.name} />
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-md-6 col-lg-6">
-          <h2 className="txt-right mt-3 px-3">{resortDetails.name}</h2>
-          <p className="p-3 txt-right">{resortDetails.description}</p>
-          <div className="mt-3">
-            <p className="border d-flex justify-content-between p-3 bg-secondary text-white"><span className="fs-5">Price:</span>{resortDetails.price}</p>
-            <p className="border d-flex justify-content-between p-3"><span className="fs-5">Guests Amount:</span>{resortDetails.guests_amount}</p>
-            <p className="border d-flex justify-content-between p-3 bg-secondary text-white"><span className="fs-5">Location:</span>{resortDetails.location}</p>
+          <div className="col-md-6 col-lg-6">
+            <h2 className="txt-right mt-3 px-3">{resortDetails.name}</h2>
+            <p className="p-3 txt-right">{resortDetails.description}</p>
+            <div className="mt-3">
+              <p className="border d-flex justify-content-between p-3 bg-secondary text-white">
+                <span className="fs-5">Price:</span>
+                {resortDetails.price}
+              </p>
+              <p className="border d-flex justify-content-between p-3">
+                <span className="fs-5">Guests Amount:</span>
+                {resortDetails.guests_amount}
+              </p>
+              <p className="border d-flex justify-content-between p-3 bg-secondary text-white">
+                <span className="fs-5">Location:</span>
+                {resortDetails.location}
+              </p>
+            </div>
+            <a href="/" className="my-3 txt-right fw-bold d-block link-dark text-decoration-none">
+              Discover More Resort
+              <span className="text-orange"><FaGreaterThan /></span>
+            </a>
+            <a href={`/add-booking/${resortDetails.id}`} className="btn btn-success px-3 py-2 mt-3 rounded-pill fs-5">
+              <BsPlusCircle />
+              <span className="ps-3 fs-5">Add Booking</span>
+              {' '}
+              <span className="ps-3"><BsArrowRightCircle /></span>
+            </a>
           </div>
-          <a href="/" className="my-3 txt-right fw-bold d-block link-dark text-decoration-none">Discover More Resort <span className="text-orange"><FaGreaterThan /></span></a>
-          <a href={`/add-booking/${resortDetails.id}`} className="btn btn-success px-3 py-2 mt-3 rounded-pill fs-5"><BsPlusCircle /><span className="ps-3 fs-5">Add Booking</span> <span className='ps-3'><BsArrowRightCircle /></span></a>
         </div>
-      </div>
       </div>
     );
   }

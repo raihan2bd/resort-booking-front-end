@@ -26,6 +26,10 @@ h6 {
   background-color: #99c110 !important;
 }
 
+.btn-success {
+  border-color: #99c110;
+}
+
 .text-success {
   color: #99c110 !important;
 }
@@ -42,6 +46,10 @@ h6 {
 /* Add this CSS to your existing styles or create a new CSS file */
 .container {
   text-align: center;
+}
+
+.txt-right {
+  text-align: right !important;
 }
 
 .resorts-carousel {

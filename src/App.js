@@ -10,6 +10,7 @@ import SignInForm from './pages/SignInForm';
 import DeleteReservation from './pages/DeleteReservation';
 import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
+import ResortDetailsPage from './pages/ResortDetailsPage';
 
 // set base api url
 axios.defaults.baseURL = 'http://localhost:4000';
@@ -43,6 +44,7 @@ const App = () => {
         />
         <Route path="/" element={<MainPage />} />
         <Route path="/delete-reservations" element={<DeleteReservation />} />
+        <Route path="/details/:resortId" element={<ResortDetailsPage />} />
       </Routes>
     </>
   );

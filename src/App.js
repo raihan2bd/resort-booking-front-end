@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-
 import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';

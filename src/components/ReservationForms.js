@@ -1,22 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from 'prop-types';
-import { fetchLogin } from "../redux/auth/authSlice";
+import { fetchResorts } from "../redux/resorts/resortsSlice";
+import { createBookings } from "../redux/reservation/bookingsSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 
-const ReservationForm = ({selectedResortId, resortSelected}) => {
-  console.log(selectedResortId);
-  console.log(resortSelected);
-  const fullName = localStorage.getItem('name');
+const ReservationForm = () => {
+ 
   const dispatch = useDispatch();
-  const {resorts} = useSelector((state) => state.resortsSlice) || [];
+  const {resorts, loading, error} = useSelector((state) => state.resortsSlice);
+  const token = useSelector((state) => state.auth.token);
+  console.log(loading, 'loading details')
   console.log(resorts, 'resorts details')
+  console.log(error, 'error details')
+  useEffect(() => {
+    dispatch(fetchResorts()) 
+  }, [dispatch]);
 
   const [formData, setFormData] = useState({
     address: '',
-    date: [],
+    startDate: '',
+    endDate: '',
     resort_id: ''
   });
+  
   const locations = [
     { id: 1, name: 'Madrid' },
     { id: 2, name: 'Capetown' },
@@ -24,21 +31,10 @@ const ReservationForm = ({selectedResortId, resortSelected}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (resortSelected) {
-      formData.resort_id = selectedResortId;
-    }
-    const data = {
-      end_point: '/resorts',
-      method_data: {
-        method: 'POST',
-        headers: {
-          Authorization: localStorage.getItem('isAuth'),
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ resorts: formData }),
-      },
-    };
-    dispatch(fetchLogin(data));
+    // const bookings = {
+    //  formData
+    // }
+    dispatch(createBookings(token));
   };
 
   const handleChange = (e) => {
@@ -51,14 +47,8 @@ const ReservationForm = ({selectedResortId, resortSelected}) => {
       id="reservation-form"
       className="d-flex flex-column align-items-center g-4"
     >
-      <input
-        className="form-control mb-3"
-        type="text"
-        value={fullName}
-        disabled
-      />
       <div className="row g-2 mb-3">
-        {!resortSelected && (
+       
           <div className="col select-wrapper">
             <select
               className="form-select"
@@ -67,16 +57,16 @@ const ReservationForm = ({selectedResortId, resortSelected}) => {
               name="resort_id"
             >
               <option value="">Select a resort</option>
-              {resorts.map((resort) => (
+              {loading ? (<p>loading</p>) :
+              resorts.resorts.map((resort) => (
                 <option key={resort.id} value={resort.id}>
                   {resort.name}
                 </option>
               ))}
             </select>
           </div>
-        )}
+       
         <div className="col select-wrapper">
-          {/* <label htmlFor="dateInput">Address:</label> */}
           <select
             className="form-select"
             value={formData.address}
@@ -96,17 +86,17 @@ const ReservationForm = ({selectedResortId, resortSelected}) => {
       <input
         className="form-control mb-3"
         type="date"
-        value={formData.date}
+        value={formData.startDate}
         onChange={handleChange}
-        name="date"
+        name="startDate"
       />
        <label htmlFor="dateInput">End Date:</label>
       <input
         className="form-control mb-3"
         type="date"
-        value={formData.date}
+        value={formData.endDate}
         onChange={handleChange}
-        name="date"
+        name="endDate"
       />
       <button type="submit" className="btn btn-light text-success">
         Create Reservation

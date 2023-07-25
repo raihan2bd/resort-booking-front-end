@@ -102,6 +102,7 @@ const MainPage = () => {
           )}
         </div>
       </div>
+      {resorts.length > 0 && (
       <div className="carousel-buttons-container">
         <button
           type="button"
@@ -120,6 +121,7 @@ const MainPage = () => {
           &gt;
         </button>
       </div>
+      )}
     </div>
   );
 };

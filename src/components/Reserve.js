@@ -6,7 +6,7 @@ const Reserve = () => {
 
   return (
     <div className="reservation-container mt-4 p-3">
-      <h1>Create New Reservation</h1>
+      <h1 className="text-center my-3">Create New Reservation</h1>
       <ReservationForm resortId={resortId || ''} />
     </div>
   );

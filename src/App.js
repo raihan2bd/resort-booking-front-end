@@ -15,7 +15,7 @@ import Layout from './components/Layout/Layout';
 import './components/Layout/Layout.css';
 import ResortDetailsPage from './pages/ResortDetailsPage';
 // set base api url
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://resort-booking-back-end.onrender.com/';
 
 const App = () => {
   const auth = useSelector((state) => state.auth);

@@ -35,10 +35,6 @@ button:active {
   background-color: #99c110 !important;
 }
 
-.btn-success {
-  border-color: #99c110;
-}
-
 .text-success {
   color: #99c110 !important;
 }
@@ -62,17 +58,11 @@ button:active {
   font-weight: normal;
 }
 
-/* Add this CSS to your existing styles or create a new CSS file */
 .container {
   text-align: center;
 }
 
-.txt-right {
-  text-align: right !important;
-}
-
 .resorts-carousel {
-  position: relative;
   overflow: hidden;
 }
 
@@ -82,8 +72,22 @@ button:active {
 }
 
 .resort-item {
-  flex: 0 0 33.33%; /* Show 3 resorts at a time */
+  flex: 0 0 33.33%;
   padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .resort-item {
+    flex: 0 0 50%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resort-item {
+    flex: 0 0 100%;
+    padding: 20px;
+  }
 }
 
 .img-thumbnail {
@@ -93,42 +97,46 @@ button:active {
   border: none;
 }
 
+.carousel-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -30vh;
+}
+
 .carousel-button {
-  position: absolute;
-  top: 48%;
-  transform: translateY(-50%);
   font-size: 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
-.limegreen-button {
-  background-color: limegreen;
-  color: white; /* Optional: Set the text color for better contrast */
-}
-
-.gray-button {
-  background-color: gray;
-  color: white; /* Optional: Set the text color for better contrast */
-}
-
 .prev-button {
   left: 0;
   border-bottom-right-radius: 50px;
   border-top-right-radius: 50px;
-  width: 3%;
+  margin-right: 10%;
 }
 
 .next-button {
   right: 0;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
-  width: 3%;
 }
 
-#list {
-  padding-top: 8%;
+.next-button,
+.prev-button {
+  width: 30px;
+}
+
+.limegreen-button {
+  background-color: limegreen;
+  color: white;
+}
+
+.gray-button {
+  background-color: gray;
+  color: white;
 }
 
 #list a {

@@ -13,7 +13,6 @@ export const createBookings = createAsyncThunk(
   BOOKINGS,
   async ({ token, formData }, { rejectWithValue }) => {
     try {
-      console.log('I am working', token);
       const config = {
         headers: {
           Authorization: token,
@@ -27,12 +26,9 @@ export const createBookings = createAsyncThunk(
         resort_id: formData.resort_id,
       };
 
-      console.log('form', formData);
-      console.log('booking data', booking);
       const res = await axios.post('/bookings', booking, config);
       return { bookings: res.data };
     } catch (error) {
-      console.log(error);
       return rejectWithValue(error);
     }
   },

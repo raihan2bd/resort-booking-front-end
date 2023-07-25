@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { BsArrowRightCircle, BsPlusCircle } from 'react-icons/bs';
 import { FaGreaterThan } from 'react-icons/fa';
 
@@ -61,16 +61,16 @@ const ResortDetailsPage = () => {
                 {resortDetails.location}
               </p>
             </div>
-            <a href="/" className="my-3 txt-right fw-bold d-block link-dark text-decoration-none">
+            <Link to="/" className="my-3 txt-right fw-bold d-block link-dark text-decoration-none">
               Discover More Resort
               <span className="text-orange"><FaGreaterThan /></span>
-            </a>
-            <a href={`/add-booking/${resortDetails.id}`} className="btn btn-success px-3 py-2 mt-3 rounded-pill fs-5">
+            </Link>
+            <Link to={`/add-booking/${resortDetails.id}`} className="btn btn-success px-3 py-2 mt-3 rounded-pill fs-5">
               <BsPlusCircle />
-              <span className="ps-3 fs-5">Add Booking</span>
+              <span className="ps-3 fs-5 text-center">Add Booking</span>
               {' '}
               <span className="ps-3"><BsArrowRightCircle /></span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

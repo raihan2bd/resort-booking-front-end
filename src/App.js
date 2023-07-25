@@ -9,14 +9,14 @@ import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';
 import Reserve from './components/Reserve';
-import DeleteReservation from './pages/DeleteReservation';
+import DeleteResort from './pages/DeleteResort';
 import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
 import Layout from './components/Layout/Layout';
 import './components/Layout/Layout.css';
 import ResortDetailsPage from './pages/ResortDetailsPage';
 // set base api url
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://resort-booking-back-end.onrender.com';
 
 const App = () => {
   const auth = useSelector((state) => state.auth);
@@ -39,6 +39,7 @@ const App = () => {
             path="/my-bookings"
             element={auth.isAuth ? <MyBookingsPage /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/signup"
             element={!auth.isAuth ? <RegistrationForm /> : <Navigate to="/" />}
@@ -47,9 +48,12 @@ const App = () => {
             path="/login"
             element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
           />
-          <Route path="/add-class" element={<AddResort />} />
-          <Route path="/reservation_form" element={<Reserve />} />
-          <Route path="/delete-reservations" element={<DeleteReservation />} />
+
+          <Route path="/" element={<MainPage />} />
+          <Route path="/reservation_form" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
+          <Route path="/add-booking/:resortId" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
+          <Route path="/delete-resort" element={auth.isAuth ? <DeleteResort /> : <Navigate to="/login" />} />
+          <Route path="/add_resort" element={auth.isAuth ? <AddResort /> : <Navigate to="/login" />} />
           <Route path="/details/:resortId" element={<ResortDetailsPage />} />
         </Routes>
       </>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const AddResort = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const AddResort = () => {
   });
 
   const token = useSelector((state) => state.auth.token);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,10 +25,9 @@ const AddResort = () => {
         },
       };
       try {
-        const response = await axios.post('/resorts', { ...formData }, config);
-        console.log(response);
+        await axios.post('/resorts', { ...formData }, config);
+        navigate(('/my-bookings'));
       } catch (error) {
-        console.log(error);
         // space reserved for testing errors
       }
     };

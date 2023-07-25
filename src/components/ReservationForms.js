@@ -1,34 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchResorts } from '../redux/resorts/resortsSlice';
 import { createBookings } from '../redux/reservation/bookingsSlice';
 
-const ReservationForm = () => {
+const ReservationForm = ({ resortId }) => {
   const dispatch = useDispatch();
   const { resorts, loading } = useSelector((state) => state.resortsSlice);
   const token = useSelector((state) => state.auth.token);
-  useEffect(() => {
-    dispatch(fetchResorts());
-  }, [dispatch]);
 
   const [formData, setFormData] = useState({
     address: '',
     startDate: '',
     endDate: '',
-    resort_id: '',
+    resort_id: resortId,
   });
-
-  const locations = [
-    { id: 1, name: 'Madrid' },
-    { id: 2, name: 'Capetown' },
-  ];
 
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(createBookings({ token, formData }));
     navigate(('/my-bookings'));
   };
@@ -36,6 +28,10 @@ const ReservationForm = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    dispatch(fetchResorts());
+  }, [dispatch]);
 
   return (
     <form
@@ -48,12 +44,13 @@ const ReservationForm = () => {
         <div className="col select-wrapper">
           <select
             className="form-select"
-            value={formData.resort_id}
             onChange={handleChange}
+            value={formData.resort_id}
             name="resort_id"
           >
+
             <option value="">Select a resort</option>
-            {loading ? (<li>loading</li>)
+            {loading ? (<option value="">Loading...</option>)
               : resorts.resorts.map((resort) => (
                 <option key={resort.id} value={resort.id}>
                   {resort.name}
@@ -61,23 +58,16 @@ const ReservationForm = () => {
               ))}
           </select>
         </div>
-
-        <div className="col select-div">
-          <select
-            className="form-select"
-            value={formData.address}
-            onChange={handleChange}
-            name="address"
-          >
-            <option value="">Select a location</option>
-            {locations.map((location) => (
-              <option key={location.id} value={location.name}>
-                {location.name}
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
+      <option value="">User Address</option>
+      <input
+        id="addressInput"
+        className="form-control mb-3"
+        type="text"
+        value={formData.address}
+        onChange={handleChange}
+        name="address"
+      />
       <option value="">Start Date:</option>
       <input
         id="dateInput"
@@ -101,6 +91,10 @@ const ReservationForm = () => {
       </button>
     </form>
   );
+};
+
+ReservationForm.propTypes = {
+  resortId: PropTypes.string.isRequired,
 };
 
 export default ReservationForm;

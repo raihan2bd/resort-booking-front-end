@@ -59,16 +59,6 @@ const myBookingsSlice = createSlice({
       };
       return updatedState;
     });
-
-    // builder.addCase(fetchMyBookings.rejected, (state, { payload }) => {
-    //   const updatedState = {
-    //     ...state,
-    //     loading: payload.loading,
-    //     error: payload.error,
-    //     myBookings: payload.myBookings,
-    //   };
-    //   return updatedState;
-    // });
   },
 });
 

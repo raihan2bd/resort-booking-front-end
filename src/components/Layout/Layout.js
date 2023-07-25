@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   FaTwitter,
@@ -11,6 +11,7 @@ import {
   FaBars,
   FaTimes,
   FaUserCircle,
+  FaUserAltSlash,
 } from 'react-icons/fa';
 import links from './navData';
 import logoImage from '../../images/logo.jpeg';
@@ -30,7 +31,7 @@ const Layout = ({ children }) => {
   const mainClasses = showNav ? 'col-md-9 col-lg-9 full-screen' : 'col-md-9 col-lg-9';
 
   return (
-    <div className="row">
+    <div className="row gx-0">
       <nav className={navClasses}>
         <button
           type="button"
@@ -39,8 +40,8 @@ const Layout = ({ children }) => {
         >
           <FaTimes />
         </button>
-        <div className="logo-image mt-3">
-          <img src={logoImage} alt="" />
+        <div className="logo-image p-3">
+          <Link to="/"><img src={logoImage} alt="" /></Link>
         </div>
         <ul>
           {links.map((link) => (
@@ -92,16 +93,17 @@ const Layout = ({ children }) => {
             {!auth.userId ? (
               <a
                 href="/login"
-                className="btn btn btn-outline-light d-block"
+                className="btn bg-orange text-light d-block border"
               >
                 <FaUserCircle />
               </a>
             ) : (
               <button
                 type="button"
+                className="btn bg-orange text-light border"
                 onClick={() => dispatch(fetchLogout({ token: auth.token }))}
               >
-                Logout
+                <FaUserAltSlash />
               </button>
             )}
           </div>

@@ -12,7 +12,7 @@ const links = [
   {
     id: 3,
     title: 'Delete Resort',
-    path: 'delete-reservations',
+    path: 'delete-resort',
   },
   {
     id: 4,

@@ -23,7 +23,6 @@ const ReservationForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(createBookings({ token, formData }));
     navigate(('/my-bookings'));
   };

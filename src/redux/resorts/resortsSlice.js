@@ -14,7 +14,6 @@ export const fetchResorts = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const res = await axios.get('/resorts');
-      console.log(res, 'the response');
       return { resorts: res.data };
     } catch (error) {
       return rejectWithValue(error);

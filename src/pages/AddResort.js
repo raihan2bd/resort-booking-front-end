@@ -55,6 +55,7 @@ const AddResort = () => {
           id="name"
           value={formData.name}
           onChange={(e) => handleChange(e)}
+          required
         />
       </div>
       <div className="mb-3">
@@ -66,10 +67,11 @@ const AddResort = () => {
           id="location"
           value={formData.location}
           onChange={(e) => handleChange(e)}
+          required
         />
       </div>
       <div className="mb-3">
-        <h2 htmlFor="price" className="form-label">Resort price:</h2>
+        <h2 htmlFor="price" className="form-label">Resort Price:</h2>
         <input
           type="number"
           className="form-control"
@@ -77,10 +79,11 @@ const AddResort = () => {
           id="price"
           value={formData.price}
           onChange={(e) => handleChange(e)}
+          required
         />
       </div>
       <div className="mb-3">
-        <h2 htmlFor="guests_amount" className="form-label">Resort guests_amount:</h2>
+        <h2 htmlFor="guests_amount" className="form-label">Resort Guests Amount:</h2>
         <input
           type="number"
           className="form-control"
@@ -88,10 +91,11 @@ const AddResort = () => {
           id="guests_amount"
           value={formData.guests_amount}
           onChange={(e) => handleChange(e)}
+          required
         />
       </div>
       <div className="mb-3">
-        <h2 htmlFor="image_url" className="form-label">Resort image_url:</h2>
+        <h2 htmlFor="image_url" className="form-label">Resort Image Url:</h2>
         <input
           type="text"
           className="form-control"
@@ -99,22 +103,24 @@ const AddResort = () => {
           id="image_url"
           value={formData.image_url}
           onChange={(e) => handleChange(e)}
+          required
         />
       </div>
 
       <div className="mb-3">
-        <h2 htmlFor="description" className="form-label">Resort description:</h2>
+        <h2 htmlFor="description" className="form-label">Resort Description:</h2>
         <textarea
           className="form-control"
           name="description"
           id="description"
           value={formData.description}
           onChange={(e) => handleChange(e)}
+          required
         ></textarea>
       </div>
 
       {/* {auth.message && <p className="text-danger">{auth.message}</p>} */}
-      <button type="submit" className="btn btn-primary">Register</button>
+      <button type="submit" className="btn btn-success">Register</button>
     </form>
   );
 };

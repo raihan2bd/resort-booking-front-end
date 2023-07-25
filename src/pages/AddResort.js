@@ -1,42 +1,37 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { fetchResorts } from '../redux/resorts/resortsSlice';
-import { createBookings } from '../redux/reservation/bookingsSlice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 
 const AddResort = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        location: '',
-        price: 0,
-        guests_amount: 0,
-        image_url: '',
-        description: '',
-      });
+  const [formData, setFormData] = useState({
+    name: '',
+    location: '',
+    price: 0,
+    guests_amount: 0,
+    image_url: '',
+    description: '',
+  });
 
   const token = useSelector((state) => state.auth.token);
-
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const fetchResorts = async () => {
-        const config = {
-            headers: {
-              Authorization: token,
-            },
-          };
-        try {
-          const response = await axios.post('/resorts', {...formData}, config);
-          console.log(response);
-        } catch (error) {
-            console.log(error);
-          // space reserved for testing errors
-        }
+      const config = {
+        headers: {
+          Authorization: token,
+        },
       };
-  
-      fetchResorts();
+      try {
+        const response = await axios.post('/resorts', { ...formData }, config);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+        // space reserved for testing errors
+      }
+    };
+
+    fetchResorts();
     // navigate(('/my-bookings'));
   };
 
@@ -116,7 +111,7 @@ const AddResort = () => {
           value={formData.description}
           onChange={(e) => handleChange(e)}
           required
-        ></textarea>
+        />
       </div>
 
       {/* {auth.message && <p className="text-danger">{auth.message}</p>} */}

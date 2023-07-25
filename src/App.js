@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { retriveToken } from './redux/auth/authSlice';
 
-import AddResort from './pages/AddResort'
+import AddResort from './pages/AddResort';
 import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';

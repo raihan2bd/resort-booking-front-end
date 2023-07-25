@@ -37,6 +37,7 @@ const App = () => {
             path="/my-bookings"
             element={auth.isAuth ? <MyBookingsPage /> : <Navigate to="/login" />}
           />
+
           <Route
             path="/signup"
             element={!auth.isAuth ? <RegistrationForm /> : <Navigate to="/" />}
@@ -46,8 +47,8 @@ const App = () => {
             element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
           />
           <Route path="/" element={<MainPage />} />
-          <Route path="/reservation_form" element={<Reserve />} />
-          <Route path="/delete-reservations" element={<DeleteReservation />} />
+          <Route path="/reservation_form" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
+          <Route path="/delete-reservations" element={auth.isAuth ? <DeleteReservation /> : <Navigate to="/login" />} />
           <Route path="/details/:resortId" element={<ResortDetailsPage />} />
         </Routes>
       </>

@@ -30,7 +30,7 @@ const Layout = ({ children }) => {
   const mainClasses = showNav ? 'col-md-9 col-lg-9 full-screen' : 'col-md-9 col-lg-9';
 
   return (
-    <div className="row">
+    <div className="row gx-0">
       <nav className={navClasses}>
         <button
           type="button"
@@ -39,7 +39,7 @@ const Layout = ({ children }) => {
         >
           <FaTimes />
         </button>
-        <div className="logo-image mt-3">
+        <div className="logo-image p-3">
           <img src={logoImage} alt="" />
         </div>
         <ul>

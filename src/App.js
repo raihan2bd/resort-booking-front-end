@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { retriveToken } from './redux/auth/authSlice';
 
+import AddResort from './pages/AddResort';
 import MyBookingsPage from './pages/MyBookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';
@@ -33,6 +34,7 @@ const App = () => {
     <Layout>
       <>
         <Routes>
+          <Route path="/" element={<MainPage />} />
           <Route
             path="/my-bookings"
             element={auth.isAuth ? <MyBookingsPage /> : <Navigate to="/login" />}
@@ -46,10 +48,13 @@ const App = () => {
             path="/login"
             element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
           />
+
           <Route path="/" element={<MainPage />} />
           <Route path="/reservation_form" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/add-booking/:resortId" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/delete-resort" element={auth.isAuth ? <DeleteResort /> : <Navigate to="/login" />} />
+          <Route path="/add-class" element={auth.isAuth ? <AddResort /> : <Navigate to="/login" />} />
+          <Route path="/delete-reservations" element={auth.isAuth ? <DeleteReservation /> : <Navigate to="/login" />} />
           <Route path="/details/:resortId" element={<ResortDetailsPage />} />
         </Routes>
       </>

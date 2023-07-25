@@ -54,7 +54,6 @@ const App = () => {
           <Route path="/add-booking/:resortId" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/delete-resort" element={auth.isAuth ? <DeleteResort /> : <Navigate to="/login" />} />
           <Route path="/add-class" element={auth.isAuth ? <AddResort /> : <Navigate to="/login" />} />
-          <Route path="/delete-reservations" element={auth.isAuth ? <DeleteReservation /> : <Navigate to="/login" />} />
           <Route path="/details/:resortId" element={<ResortDetailsPage />} />
         </Routes>
       </>

@@ -31,32 +31,27 @@ const App = () => {
 
   return (
     <Layout>
-      <Routes>
-        <Route
-          path="/my-bookings"
-          element={auth.isAuth ? <MyBookingsPage /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/signup"
-          element={!auth.isAuth ? <RegistrationForm /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/login"
-          element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
-        />
-        <Route path="/" element={<MainPage />} />
-
-        <Route path="/reservation_form" element={<Reserve />} />
-        <Route path="/delete-reservations" element={<DeleteReservation />} />
-
-
-      </Routes>
-
-    </>
-        <Route path="/details/:resortId" element={<ResortDetailsPage />} />
-      </Routes>
+      <>
+        <Routes>
+          <Route
+            path="/my-bookings"
+            element={auth.isAuth ? <MyBookingsPage /> : <Navigate to="/login" />}
+          />
+          <Route
+            path="/signup"
+            element={!auth.isAuth ? <RegistrationForm /> : <Navigate to="/" />}
+          />
+          <Route
+            path="/login"
+            element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
+          />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/reservation_form" element={<Reserve />} />
+          <Route path="/delete-reservations" element={<DeleteReservation />} />
+          <Route path="/details/:resortId" element={<ResortDetailsPage />} />
+        </Routes>
+      </>
     </Layout>
-
   );
 };
 

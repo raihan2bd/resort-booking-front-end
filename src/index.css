@@ -26,10 +26,6 @@ h6 {
   background-color: #99c110 !important;
 }
 
-.btn-success {
-  border-color: #99c110;
-}
-
 .text-success {
   color: #99c110 !important;
 }
@@ -43,17 +39,11 @@ h6 {
   color: #ffb400;
 }
 
-/* Add this CSS to your existing styles or create a new CSS file */
 .container {
   text-align: center;
 }
 
-.txt-right {
-  text-align: right !important;
-}
-
 .resorts-carousel {
-  position: relative;
   overflow: hidden;
 }
 
@@ -63,8 +53,22 @@ h6 {
 }
 
 .resort-item {
-  flex: 0 0 33.33%; /* Show 3 resorts at a time */
+  flex: 0 0 33.33%;
   padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .resort-item {
+    flex: 0 0 50%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .resort-item {
+    flex: 0 0 100%;
+    padding: 20px;
+  }
 }
 
 .img-thumbnail {
@@ -74,24 +78,39 @@ h6 {
   border: none;
 }
 
+.carousel-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -30vh;
+}
+
 .carousel-button {
-  position: absolute;
-  top: 48%;
-  transform: translateY(-50%);
   font-size: 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
+.prev-button {
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  margin-right: 10%;
+}
+
+.next-button {
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
 .limegreen-button {
   background-color: limegreen;
-  color: white; /* Optional: Set the text color for better contrast */
+  color: white;
 }
 
 .gray-button {
   background-color: gray;
-  color: white; /* Optional: Set the text color for better contrast */
+  color: white;
 }
 
 .prev-button {

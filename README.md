@@ -9,6 +9,7 @@
   - [🛠 Built With ](#-built-with-)
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
+    - [🚀 Live Demo](#live-demo)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -44,6 +45,16 @@
 - Create/remove a booking for a resort
 - See a list of all possible resorts
 - Admins are able to add resorts to the list
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+> Visit our webpage here.
+
+- [Live Demo Link](https://resort-booking-front-end.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

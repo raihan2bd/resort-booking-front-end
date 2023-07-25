@@ -139,10 +139,6 @@ button:active {
   color: white;
 }
 
-#list {
-  padding-top: 8%;
-}
-
 #list a {
   text-decoration: none;
   color: black;

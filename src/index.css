@@ -21,6 +21,15 @@ h6 {
   font-weight: bold;
 }
 
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover,
+button:active {
+  transform: translateY(-2px);
+}
+
 .bg-success,
 .btn-success {
   background-color: #99c110 !important;
@@ -34,6 +43,10 @@ h6 {
   color: #99c110 !important;
 }
 
+.btn-success:hover {
+  border-color: #99c110 !important;
+}
+
 .bg-orange,
 .btn-orange {
   background-color: #ffb400;
@@ -41,6 +54,12 @@ h6 {
 
 .text-orange {
   color: #ffb400;
+}
+
+.form-label {
+  font-size: 1rem !important;
+  text-align: left;
+  font-weight: normal;
 }
 
 /* Add this CSS to your existing styles or create a new CSS file */

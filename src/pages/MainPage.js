@@ -10,7 +10,7 @@ const MainPage = () => {
     // Fetch the resorts data from the backend
     const fetchResorts = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/resorts');
+        const response = await axios.get('/resorts');
         setResorts(response.data);
       } catch (error) {
         // space reserved for testing errors

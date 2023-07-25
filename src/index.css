@@ -93,14 +93,21 @@ h6 {
 }
 
 .prev-button {
+  left: 0;
   border-bottom-right-radius: 50px;
   border-top-right-radius: 50px;
   margin-right: 10%;
 }
 
 .next-button {
+  right: 0;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
+}
+
+.next-button,
+.prev-button {
+  width: 30px;
 }
 
 .limegreen-button {
@@ -111,20 +118,6 @@ h6 {
 .gray-button {
   background-color: gray;
   color: white;
-}
-
-.prev-button {
-  left: 0;
-  border-bottom-right-radius: 50px;
-  border-top-right-radius: 50px;
-  width: 3%;
-}
-
-.next-button {
-  right: 0;
-  border-bottom-left-radius: 50px;
-  border-top-left-radius: 50px;
-  width: 3%;
 }
 
 #list {

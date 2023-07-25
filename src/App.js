@@ -48,6 +48,7 @@ const App = () => {
           />
           <Route path="/" element={<MainPage />} />
           <Route path="/reservation_form" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
+          <Route path="/add-booking/:resortId" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/delete-resort" element={auth.isAuth ? <DeleteResort /> : <Navigate to="/login" />} />
           <Route path="/details/:resortId" element={<ResortDetailsPage />} />
         </Routes>

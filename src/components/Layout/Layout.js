@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   FaTwitter,
@@ -11,6 +11,7 @@ import {
   FaBars,
   FaTimes,
   FaUserCircle,
+  FaUserAltSlash,
 } from 'react-icons/fa';
 import links from './navData';
 import logoImage from '../../images/logo.jpeg';
@@ -40,7 +41,7 @@ const Layout = ({ children }) => {
           <FaTimes />
         </button>
         <div className="logo-image p-3">
-          <img src={logoImage} alt="" />
+          <Link to="/"><img src={logoImage} alt="" /></Link>
         </div>
         <ul>
           {links.map((link) => (
@@ -92,16 +93,17 @@ const Layout = ({ children }) => {
             {!auth.userId ? (
               <a
                 href="/login"
-                className="btn btn btn-outline-light d-block"
+                className="btn bg-orange text-light d-block border"
               >
                 <FaUserCircle />
               </a>
             ) : (
               <button
                 type="button"
+                className="btn bg-orange text-light border"
                 onClick={() => dispatch(fetchLogout({ token: auth.token }))}
               >
-                Logout
+                <FaUserAltSlash />
               </button>
             )}
           </div>

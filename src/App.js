@@ -11,7 +11,9 @@ import Reserve from './components/Reserve';
 import DeleteReservation from './pages/DeleteReservation';
 import MainPage from './pages/MainPage';
 import AuthSpinner from './components/UI/AuthSpinner';
-
+import Layout from './components/Layout/Layout';
+import './components/Layout/Layout.css';
+import ResortDetailsPage from './pages/ResortDetailsPage';
 // set base api url
 axios.defaults.baseURL = 'http://localhost:4000';
 
@@ -28,7 +30,7 @@ const App = () => {
   }
 
   return (
-    <>
+    <Layout>
       <Routes>
         <Route
           path="/my-bookings"
@@ -47,9 +49,14 @@ const App = () => {
         <Route path="/reservation_form" element={<Reserve />} />
         <Route path="/delete-reservations" element={<DeleteReservation />} />
 
+
       </Routes>
 
     </>
+        <Route path="/details/:resortId" element={<ResortDetailsPage />} />
+      </Routes>
+    </Layout>
+
   );
 };
 

@@ -19,11 +19,6 @@ const ReservationForm = () => {
     resort_id: '',
   });
 
-  const locations = [
-    { id: 1, name: 'Madrid' },
-    { id: 2, name: 'Capetown' },
-  ];
-
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -61,23 +56,16 @@ const ReservationForm = () => {
               ))}
           </select>
         </div>
-
-        <div className="col select-div">
-          <select
-            className="form-select"
-            value={formData.address}
-            onChange={handleChange}
-            name="address"
-          >
-            <option value="">Select a location</option>
-            {locations.map((location) => (
-              <option key={location.id} value={location.name}>
-                {location.name}
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
+      <option value="">User Address</option>
+      <input
+        id="addressInput"
+        className="form-control mb-3"
+        type="text"
+        value={formData.address}
+        onChange={handleChange}
+        name="address"
+      />
       <option value="">Start Date:</option>
       <input
         id="dateInput"

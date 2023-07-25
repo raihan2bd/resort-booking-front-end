@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchReservations, deleteReservation } from '../redux/delete-reservation/deleteReservationSlice';
 import axios from 'axios';
+import { fetchReservations, deleteReservation } from '../redux/delete-reservation/deleteReservationSlice';
 import '../style/DeleteReservation.css';
+
 const DeleteReservation = () => {
   const dispatch = useDispatch();
   const reservations = useSelector((state) => state.reservationsReducer.reservations);
@@ -21,7 +22,7 @@ const DeleteReservation = () => {
           } catch (error) {
             return reservation;
           }
-        })
+        }),
       );
       setReservationsWithResortNames(updatedReservations);
     };

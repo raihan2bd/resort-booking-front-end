@@ -15,6 +15,9 @@ import AuthSpinner from './components/UI/AuthSpinner';
 import Layout from './components/Layout/Layout';
 import './components/Layout/Layout.css';
 import ResortDetailsPage from './pages/ResortDetailsPage';
+import AccessDeniedPage from './pages/AccessDeniedPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 // set base api url
 axios.defaults.baseURL = 'https://resort-booking-back-end.onrender.com';
 
@@ -39,6 +42,7 @@ const App = () => {
             path="/my-bookings"
             element={auth.isAuth ? <MyBookingsPage /> : <Navigate to="/login" />}
           />
+          <Route path="/details/:resortId" element={<ResortDetailsPage />} />
 
           <Route
             path="/signup"
@@ -49,12 +53,12 @@ const App = () => {
             element={!auth.isAuth ? <SignInForm /> : <Navigate to="/" />}
           />
 
-          <Route path="/" element={<MainPage />} />
+          <Route path="/access-denied" element={<AccessDeniedPage />} />
           <Route path="/reservation_form" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/add-booking/:resortId" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
-          <Route path="/delete-resort" element={auth.isAuth ? <DeleteResort /> : <Navigate to="/login" />} />
-          <Route path="/add_resort" element={auth.isAuth ? <AddResort /> : <Navigate to="/login" />} />
-          <Route path="/details/:resortId" element={<ResortDetailsPage />} />
+          <Route path="/delete-resort" element={auth.role === 'admin' ? <DeleteResort /> : <Navigate to="/access-denied" />} />
+          <Route path="/add_resort" element={auth.role === 'admin' ? <AddResort /> : <Navigate to="/access-denied" />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </>
     </Layout>

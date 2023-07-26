@@ -27,8 +27,12 @@ const Layout = ({ children }) => {
     setShowNav((preState) => !preState);
   };
 
-  const navClasses = showNav ? 'col-md-3 col-lg-3 shadow vh-100 navigation show' : 'col-md-3 col-lg-3 shadow vh-100 navigation';
-  const mainClasses = showNav ? 'col-md-9 col-lg-9 full-screen' : 'col-md-9 col-lg-9';
+  const navClasses = showNav
+    ? 'col-md-3 col-lg-3 shadow vh-100 navigation show'
+    : 'col-md-3 col-lg-3 shadow vh-100 navigation';
+  const mainClasses = showNav
+    ? 'col-md-9 col-lg-9 full-screen'
+    : 'col-md-9 col-lg-9';
 
   return (
     <div className="row gx-0">
@@ -41,7 +45,9 @@ const Layout = ({ children }) => {
           <FaTimes />
         </button>
         <div className="logo-image p-3">
-          <Link to="/"><img src={logoImage} alt="" /></Link>
+          <Link to="/">
+            <img src={logoImage} alt="" />
+          </Link>
         </div>
         <ul>
           {links.map((link) => (
@@ -51,6 +57,20 @@ const Layout = ({ children }) => {
               </NavLink>
             </li>
           ))}
+          {auth.role === 'admin' && (
+            <>
+              <li className="link">
+                <NavLink to="/add_resort">
+                  <span>Add Resort</span>
+                </NavLink>
+              </li>
+              <li className="link">
+                <NavLink to="/delete-resort">
+                  <span>Delete Resort</span>
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
 
         <div className="logos">
@@ -87,7 +107,11 @@ const Layout = ({ children }) => {
       <main className={mainClasses}>
         <header className="bg-success text-light px-5 py-3">
           <div className="icons d-flex justify-content-between">
-            <button type="button" className="btn btn-outline-light" onClick={showNavbar}>
+            <button
+              type="button"
+              className="btn btn-outline-light"
+              onClick={showNavbar}
+            >
               <FaBars />
             </button>
             {!auth.userId ? (

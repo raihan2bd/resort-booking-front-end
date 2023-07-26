@@ -5,16 +5,6 @@ const links = [
     path: '/',
   },
   {
-    id: 2,
-    title: 'Add Resort',
-    path: 'add_resort',
-  },
-  {
-    id: 3,
-    title: 'Delete Resort',
-    path: 'delete-resort',
-  },
-  {
     id: 4,
     title: 'Add Booking',
     path: 'reservation_form',

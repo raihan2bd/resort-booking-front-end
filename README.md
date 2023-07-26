@@ -14,7 +14,6 @@
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
     - [Install](#install)
-    - [Database](#database)
     - [Usage](#usage)
     - [Testing](#testing)
     - [Deployment](#deployment)
@@ -27,15 +26,28 @@
 
 
 # Rails Blog <a name="about-project"></a>
-> Resort booking is a full-stack webapp which allows a user to manage their bookings. This is the front-end part of the project, if you want to see the back-end part, you can click [here](https://github.com/Thinus01/Resort_Booking_Back-end)
+> Resort booking is a full-stack web app that allows a user to manage their bookings. This is the front-end part of the project, if you want to see the back-end part, you can click [here](https://github.com/Thinus01/Resort_Booking_Back-end)
 
 ## 🛠 Built With <a name="built-with"></a>
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
-  <summary>Ruby On Rails with React</summary>
+  <summary>Front End</summary>
   <ul>
-    <li><a href="">Postgresql</a></li>
+    <li>React</li>
+    <li>Redux</li>
+    <li>JAVASCRIPT</li>
+    <li>Html</li>
+    <li>CSS</li>
+  </ul>
+</details>
+
+<details>
+  <summary>Back End</summary>
+  <ul>
+    <li>Ruby</li>
+    <li>Rails</li>
+    <li>PostgreSQL</li>
   </ul>
 </details>
 
@@ -48,11 +60,9 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- LIVE DEMO -->
-
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Visit our webpage here.
+ Visit our webpage here.
 
 - [Live Demo Link](https://resort-booking-front-end.onrender.com)
 
@@ -66,42 +76,28 @@ To get a local copy up and running, follow these steps.
 ### Prerequisites
 
 In order to run this project you need:
-
-- Mac or PC
-- Understanding OOP principles
-- Have the following installed on your machine
-    - Ruby
-    - Rails
-    - PostgreSQL
-    - React
+- First of all, To run the front-end you need to run the [back-end](https://github.com/Thinus01/Resort_Booking_Back-end) on your local machine.
+- Then Make sure you have installed [NodeJs](https://nodejs.org).
+- Then make sure you have installed [React](https://reactjs.org/) on your local machine if you want to use this project locally.
 
 ### Setup
 
-Clone this repository to your desired folder:
-
-```sh
-  cd your-folder
-  https://github.com/Thinus01/Resort_Booking_Front-end
+- Then you need to clone the project on your local machine⬇️
+``` bash
+git clone https://github.com/Thinus01/Resort_Booking_Front-end.git
 ```
+- After that you need to change the base (back-end) url from the front-end to change it open `App.js` from the project and change the `axios.defaults.baseURL` to your back-end base URL. For Example ⬇️
+  ```
+  axios.defaults.baseURL = 'http://localhost:4000';
+  ```
+  ![Base_url](https://github.com/Thinus01/Resort_Booking_Front-end/assets/35267447/66ddd3f8-f932-43d1-af85-efc5bd3ff888)
+
 
 ### Install
 
-Install this project with:
-
-Install the required gems with:
-
-```sh
-bundle install
+- To install all the npm packages navigate the folder address on your terminal and enter the below command ⬇️
+``` bash
 npm install
-```
-
-### Database
-
-Create the databases and run migrations with:
-
-```sh
-rails db:create
-rails db:migrate
 ```
 
 ### Usage
@@ -109,17 +105,8 @@ rails db:migrate
 To run the development server, execute the following command:
 
 ```sh
-rails server
+npm start
 ```
-
-### Testing
-
-To run tests, run the following command:
-
-```sh
-rspec spec 
-```
-
 
 ### Deployment
 
@@ -186,7 +173,8 @@ If you like this project, please leave a ⭐️
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank microverse for serving this opportunity.
+We want to give a big thanks to Microverse for giving us the chance to achieve this milestone
+We also want to thank [Murat Korkmaz](https://www.behance.net/muratk) for his [design](https://www.behance.net/gallery/26425031/Vespa-Responsive-Redesign), that our project is based on.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -10,6 +10,7 @@
     - [Tech Stack ](#tech-stack-)
     - [Key Features ](#key-features-)
     - [🚀 Live Demo](#live-demo)
+    - [💻 Kanban Board ](#-kanban-board-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
     - [Setup](#setup)
@@ -68,6 +69,17 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 💻 Kanban Board <a name="kanban-board"></a>
+
+Hi there, we are a five-member team, @Thinus01, @raihan2bd , @edubew , @MICHAELKITH , @lawrahkonwea.
+
+We are dividing the project between [front-end](https://github.com/Thinus01/Resort_Booking_Front-end) and [back-end](https://github.com/Thinus01/Resort_Booking_Back-end)
+We also created two kanban boards together for the projects
+Front-end: https://github.com/users/Thinus01/projects/11
+Back-end: https://github.com/users/Thinus01/projects/10
+
+![Screenshot 2023-07-12 163157](https://github.com/Thinus01/Resort_Booking_Back-end/assets/78565848/51806d7f-86ff-4ace-8b17-4528f9846cc6)
+![Screenshot 2023-07-12 163226](https://github.com/Thinus01/Resort_Booking_Back-end/assets/78565848/b058c621-63ff-4bbe-90c6-72ee7a1ef5e6)
 
 ## 💻 Getting Started <a name="getting-started"></a>
 

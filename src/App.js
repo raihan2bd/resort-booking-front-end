@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import { retriveToken } from './redux/auth/authSlice';
 
 import AddResort from './pages/AddResort';
-import MyBookingsPage from './pages/MyBookingsPage';
+import MyBookingsPage from './pages/BookingsPage';
 import RegistrationForm from './pages/RegistrationForm';
 import SignInForm from './pages/SignInForm';
 import Reserve from './components/Reserve';
 import DeleteResort from './pages/DeleteResort';
 import MainPage from './pages/MainPage';
-import AuthSpinner from './components/UI/AuthSpinner';
+import Spinner from './components/UI/Spinner';
 import Layout from './components/Layout/Layout';
 import './components/Layout/Layout.css';
 import ResortDetailsPage from './pages/ResortDetailsPage';
@@ -30,7 +30,7 @@ const App = () => {
   }, [dispatch]);
 
   if (auth.loadingAuth) {
-    return <AuthSpinner />;
+    return <Spinner />;
   }
 
   return (

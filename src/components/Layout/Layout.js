@@ -16,10 +16,12 @@ import {
 import links from './navData';
 import logoImage from '../../images/logo.jpeg';
 import { fetchLogout } from '../../redux/auth/authSlice';
+import PopupMessage from '../UI/PopupMessage';
 
 const Layout = ({ children }) => {
   const [showNav, setShowNav] = useState(false);
 
+  const ui = useSelector((state) => state.ui);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -132,6 +134,11 @@ const Layout = ({ children }) => {
             )}
           </div>
         </header>
+        {ui.message && !ui.loading && (
+        <div className="m-1">
+          <PopupMessage />
+        </div>
+        )}
         <div className="main-content">{children}</div>
       </main>
     </div>

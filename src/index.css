@@ -54,12 +54,34 @@ button:active {
 
 .form-label {
   font-size: 1rem !important;
-  text-align: left;
+  text-align: left !important;
   font-weight: normal;
 }
 
 .container {
   text-align: center;
+}
+
+.message_popup {
+  width: fit-content;
+  border-left-width: 4px !important;
+  animation: slide-left 300ms ease-out forwards;
+}
+
+.custom-spinner {
+  background: rgba(3, 0, 31, 0.775);
+}
+
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .resorts-carousel {
@@ -73,20 +95,17 @@ button:active {
 
 .resort-item {
   flex: 0 0 33.33%;
-  padding: 20px;
 }
 
 @media (max-width: 768px) {
   .resort-item {
     flex: 0 0 50%;
-    padding: 20px;
   }
 }
 
 @media (max-width: 480px) {
   .resort-item {
     flex: 0 0 100%;
-    padding: 20px;
   }
 }
 
@@ -127,6 +146,7 @@ button:active {
 .next-button,
 .prev-button {
   width: 30px;
+  z-index: 100;
 }
 
 .limegreen-button {

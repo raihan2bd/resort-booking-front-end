@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { addNewResort } from '../redux/resorts/resortsSlice';
+import Spinner from '../components/UI/Spinner';
 
 const AddResort = () => {
   const [formData, setFormData] = useState({
@@ -13,35 +15,38 @@ const AddResort = () => {
     description: '',
   });
 
-  const token = useSelector((state) => state.auth.token);
+  const { token, role } = useSelector((state) => state.auth);
+  const { redirect } = useSelector((state) => state.resorts);
+  const { loading } = useSelector((state) => state.ui);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const fetchResorts = async () => {
-      const config = {
-        headers: {
-          Authorization: token,
-        },
-      };
-      try {
-        await axios.post('/resorts', { ...formData }, config);
-        navigate(('/my-bookings'));
-      } catch (error) {
-        // space reserved for testing errors
-      }
-    };
+    if (role !== 'admin') {
+      return;
+    }
 
-    fetchResorts();
-    // navigate(('/my-bookings'));
+    dispatch(addNewResort({ data: formData, token }));
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    if (redirect) {
+      navigate('/');
+    }
+  }, [redirect, navigate]);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <form onSubmit={handleSubmit} className="container mt-4">
+      <h2 className="my-2 text-center">Add a new resort</h2>
       <div className="mb-3">
         <h2 htmlFor="name" className="form-label">Resort Name:</h2>
         <input
@@ -116,7 +121,7 @@ const AddResort = () => {
       </div>
 
       {/* {auth.message && <p className="text-danger">{auth.message}</p>} */}
-      <button type="submit" className="btn btn-success">Register</button>
+      <button type="submit" className="btn btn-success mb-3">Register</button>
     </form>
   );
 };

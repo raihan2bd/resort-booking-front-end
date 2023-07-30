@@ -1,62 +1,69 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { logoutAction } from '../auth/authSlice';
+import { uiActions } from '../ui/uiSlice';
 
 const initialState = {
   resorts: [],
-  loading: true,
-  hasError: false,
-  message: null,
   redirect: false,
 };
 
 export const fetchResorts = createAsyncThunk(
   'resorts/all-resorts',
-  async (_, { rejectWithValue }) => {
+  async (_, { dispatch }) => {
     try {
+      dispatch(uiActions.pendingState());
+
       const res = await axios.get('/resorts');
+      dispatch(uiActions.fulfilledState());
       return { resorts: res.data };
     } catch (error) {
-      return rejectWithValue('Something went wrong! Please try again!');
+      dispatch(uiActions.rejectedState('Something went wrong. Please try again'));
+      return { resorts: [] };
     }
   },
 
 );
 
-export const addNewResort = createAsyncThunk('resorts/new-resort', async ({data, token}, {rejectWithValue, dispatch}) => {
+export const addNewResort = createAsyncThunk('resorts/new-resort', async ({ data, token }, { dispatch }) => {
   const config = {
     headers: {
       Authorization: token,
     },
   };
   try {
+    dispatch(uiActions.pendingState());
     const response = await axios.post('/resorts', { ...data }, config);
-    const resort =  {
+    const resort = {
       id: response.data.id,
-      ...data
-    }
-    return {message: 'Resort is added successfully!', resort}
-  } catch (error) {
-    let errMsg = 'Something went wrong! please try again!'
-    if (error.response.status === 401) {
-      dispatch(logoutAction())
-      errMsg = 'Please login to perform this action.'
-    } else if (error.response.status === 403) {
-      errMsg = 'Access denied. You don\'t have permission to perform this action'
-    }
-    rejectWithValue(errMsg)
-  }
+      ...data,
+    };
 
+    dispatch(uiActions.fulfilledState('Resort is added successfully!'));
+
+    return { resort };
+  } catch (error) {
+    let errMsg = 'Something went wrong! please try again!';
+    if (error.response.status === 401) {
+      dispatch(logoutAction());
+      errMsg = 'Please login to perform this action.';
+    } else if (error.response.status === 403) {
+      errMsg = 'Access denied. You don\'t have permission to perform this action';
+    }
+    dispatch(uiActions.rejectedState(errMsg));
+    return null;
+  }
 });
 
-export const deleteReosrt = createAsyncThunk('resorts/delete-resort', async ({resortId, token}, {dispatch, rejectWithValue}) => {
+export const deleteReosrt = createAsyncThunk('resorts/delete-resort', async ({ resortId, token }, { dispatch }) => {
   const headers = {
     Authorization: token,
   };
   try {
+    dispatch(uiActions.pendingState());
     await axios.delete(`/resorts/${resortId}`, { headers });
-    return {resortId, message: 'Resort is deleted successfully'}
-
+    dispatch(uiActions.fulfilledState('Resort is deleted successfully'));
+    return { resortId };
   } catch (error) {
     let errMsg;
     if (error.response.status === 401) {
@@ -67,7 +74,8 @@ export const deleteReosrt = createAsyncThunk('resorts/delete-resort', async ({re
     } else {
       errMsg = 'Something went wrong! Please try again.';
     }
-    rejectWithValue(errMsg)
+    dispatch(uiActions.rejectedState(errMsg));
+    return null;
   }
 });
 
@@ -76,80 +84,76 @@ const resortSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchResorts.pending, () => ({
-      loading: true,
-      resorts: [],
-      hasError: false,
-      message: null,
-      redirect: false,
-    }));
+    // builder.addCase(fetchResorts.pending, () => ({
+    //   loading: true,
+    //   resorts: [],
+    //   hasError: false,
+    //   message: null,
+    //   redirect: false,
+    // }));
 
     builder.addCase(fetchResorts.fulfilled, (state, action) => {
       const updatedState = {
         ...state,
-        loading: false,
-        hasError: false,
-        message: 'Resorts is successfully fetched',
-        resorts: action.payload,
+        resorts: action.payload.resorts,
         redirect: false,
       };
       return updatedState;
     });
 
-    builder.addCase(fetchResorts.rejected, (state, action) => {
-      const updatedState = {
-        ...state,
-        resorts: [],
-        loading: false,
-        hasError: true,
-        message: action.payload,
-        redirect: false,
-      };
-      return updatedState;
-    });
+    // builder.addCase(fetchResorts.rejected, (state, action) => {
+    //   const updatedState = {
+    //     ...state,
+    //     resorts: [],
+    //     loading: false,
+    //     hasError: true,
+    //     message: action.payload,
+    //     redirect: false,
+    //   };
+    //   return updatedState;
+    // });
 
     // add new resort reducer
-    builder.addCase(addNewResort.pending, () => {
-      return {
-        ...initialState,
-        loading: true,
+    // builder.addCase(addNewResort.pending, () => ({
+    //   ...initialState,
+    //   loading: true,
+    // }));
+
+    builder.addCase(addNewResort.fulfilled, (state, { payload }) => {
+      if (!payload) {
+        return { ...state, redirect: false };
       }
+
+      const updatedResorts = [...state.resorts, { ...payload.resort }];
+      return { ...initialState, resorts: updatedResorts, redirect: true };
     });
 
-    builder.addCase(addNewResort.fulfilled, (state, {payload}) => {
-      const updatedResorts = [...state.resorts, {...payload.resort}]
-      return {...initialState, resorts: updatedResorts, message: payload.message}
-    });
-
-    builder.addCase(addNewResort.rejected, (state, action) => {
-      return {
-        ...initialState,
-        resorts: state.resorts,
-        hasError: true,
-        message: action.payload
-      }
-    });
+    // builder.addCase(addNewResort.rejected, (state, action) => ({
+    //   ...initialState,
+    //   resorts: state.resorts,
+    //   hasError: true,
+    //   message: action.payload,
+    // }));
 
     // delete resort
-    builder.addCase(deleteReosrt.pending, () => {
-      return {...initialState, loading: true}
-    });
+    // builder.addCase(deleteReosrt.pending, () => ({ ...initialState, loading: true }));
 
-    builder.addCase(deleteReosrt.fulfilled, (state, {payload}) => {
+    builder.addCase(deleteReosrt.fulfilled, (state, { payload }) => {
+      if (!payload) {
+        return { ...state, redirect: false };
+      }
       const updatedResorts = state.resorts.filter((resort) => resort.id !== payload.resortId);
 
-      return {...initialState, resorts: updatedResorts}
+      return { ...initialState, resorts: updatedResorts, redirect: false };
     });
 
-    builder.addCase(deleteReosrt.rejected, (state, action) => {
-      return {
-        ...initialState,
-        resorts: state.resorts,
-        loading: false,
-        hasError: true,
-        message: action.payload,
-      }
-    });
+    // builder.addCase(deleteReosrt.rejected, (state, action) => ({
+    //   ...initialState,
+    //   resorts: state.resorts,
+    //   loading: false,
+    //   hasError: true,
+    //   message: action.payload,
+    // }));
   },
 });
 

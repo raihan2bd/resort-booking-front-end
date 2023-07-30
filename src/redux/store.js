@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+import ui from './ui/uiSlice';
 import auth from './auth/authSlice';
-import myBookings from './my-bookings/my-bookings';
-import resortsSlice from './resorts/resortsSlice';
-import reservationsReducer from './delete-reservation/deleteReservationSlice';
+import bookings from './bookings/bookingsSlice';
+import resorts from './resorts/resortsSlice';
 
 const store = configureStore({
   reducer: {
-    myBookings, auth, resorts: resortsSlice, reservationsReducer,
+    ui, bookings, auth, resorts,
   },
 });
 

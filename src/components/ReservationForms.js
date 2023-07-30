@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchResorts } from '../redux/resorts/resortsSlice';
-import { createBookings } from '../redux/reservation/bookingsSlice';
+import { createBooking } from '../redux/bookings/bookingsSlice';
 
 const ReservationForm = ({ resortId }) => {
   const dispatch = useDispatch();
-  const { resorts, loading } = useSelector((state) => state.resorts);
+  const { resorts } = useSelector((state) => state.resorts);
+  const loading = useSelector((state) => state.ui.loading);
   const token = useSelector((state) => state.auth.token);
+  const { redirect } = useSelector((state) => state.bookings);
 
   const [formData, setFormData] = useState({
     address: '',
@@ -21,8 +23,7 @@ const ReservationForm = ({ resortId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createBookings({ token, formData }));
-    navigate(('/my-bookings'));
+    dispatch(createBooking({ token, formData }));
   };
 
   const handleChange = (e) => {
@@ -32,6 +33,12 @@ const ReservationForm = ({ resortId }) => {
   useEffect(() => {
     dispatch(fetchResorts());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (redirect) {
+      navigate('/my-bookings');
+    }
+  }, [redirect, navigate]);
 
   return (
     <form
@@ -51,7 +58,7 @@ const ReservationForm = ({ resortId }) => {
 
             <option value="">Select a resort</option>
             {loading ? (<option value="">Loading...</option>)
-              : resorts.resorts.map((resort) => (
+              : resorts.map((resort) => (
                 <option key={resort.id} value={resort.id}>
                   {resort.name}
                 </option>

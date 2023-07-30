@@ -1,69 +1,67 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { deleteReosrt, fetchResorts } from '../redux/resorts/resortsSlice';
 
 import './DeleteReservation.css';
-import axios from 'axios';
+import Spinner from '../components/UI/Spinner';
 
 const DeleteResort = () => {
-  const [resorts, setResorts] = useState([]);
-  const [hasError, setHasError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [hasError, setHasError] = useState(null);
+  const { resorts } = useSelector((state) => state.resorts);
+  const { loading, hasError } = useSelector((state) => state.ui);
   const auth = useSelector((state) => state.auth);
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleDelete = (resortId) => {
-    const deleteResort = async () => {
-      if (auth.role !== 'admin') {
-        setHasError("You don't have access to delete the resort.");
-        return;
-      }
+    // const deleteResort = async () => {
+    //   if (auth.role !== 'admin') {
+    //     setHasError("You don't have access to delete the resort.");
+    //     return;
+    //   }
 
-      setLoading(true);
-      const headers = {
-        Authorization: auth.token,
-      };
-      try {
-        await axios.delete(`/resorts/${resortId}`, { headers });
+    //   setLoading(true);
+    //   const headers = {
+    //     Authorization: auth.token,
+    //   };
+    //   try {
+    //     await axios.delete(`/resorts/${resortId}`, { headers });
 
-        setResorts((prevState) => prevState.filter((item) => item.id !== resortId));
+    //     setResorts((prevState) => prevState.filter((item) => item.id !== resortId));
 
-        setLoading(false);
-        setHasError(null);
-      } catch (error) {
-        if (error.response.status === 401) {
-          setHasError('Unauthorize user! Please login before this action.');
-        } else if (error.response.status === 403) {
-          setHasError("You don't have permission to delete the resort!");
-        } else {
-          setHasError('Something went wrong! Please try again.');
-        }
-        setLoading(false);
-      }
-    };
-    deleteResort();
+    //     setLoading(false);
+    //     setHasError(null);
+    //   } catch (error) {
+    //     if (error.response.status === 401) {
+    //       setHasError('Unauthorize user! Please login before this action.');
+    //     } else if (error.response.status === 403) {
+    //       setHasError("You don't have permission to delete the resort!");
+    //     } else {
+    //       setHasError('Something went wrong! Please try again.');
+    //     }
+    //     setLoading(false);
+    //   }
+    // };
+    // deleteResort();
+    if (auth.role !== 'admin') {
+      navigate('/access-denied');
+      return;
+    }
+    dispatch(deleteReosrt({ resortId, token: auth.token }));
   };
 
   useEffect(() => {
-    const fetchResorts = async () => {
-      setLoading(true);
-      try {
-        const response = await axios.get('/resorts');
-        setResorts(response.data);
-        setHasError(null);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        setHasError('Something went wrong please try again');
-      }
-    };
-    fetchResorts();
-  }, []);
+    dispatch(fetchResorts());
+  }, [dispatch]);
 
   if (hasError) {
-    return <p className="text-center text-danger">{hasError}</p>;
+    return <p className="text-danger text-center p-3 shadow">Something went wrong. Please try again.</p>;
   }
 
   if (loading) {
-    return <p className="text-center text-success">Loading...</p>;
+    return <Spinner />;
   }
 
   const resortsElements = resorts.map((resort) => (

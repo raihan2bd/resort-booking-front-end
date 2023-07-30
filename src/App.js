@@ -19,7 +19,7 @@ import AccessDeniedPage from './pages/AccessDeniedPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // set base api url
-axios.defaults.baseURL = 'https://resort-booking-back-end.onrender.com';
+axios.defaults.baseURL = 'http://localhost:4000';
 
 const App = () => {
   const auth = useSelector((state) => state.auth);
@@ -54,7 +54,7 @@ const App = () => {
           />
 
           <Route path="/access-denied" element={<AccessDeniedPage />} />
-          <Route path="/reservation_form" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
+          <Route path="/add-booking" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/add-booking/:resortId" element={auth.isAuth ? <Reserve /> : <Navigate to="/login" />} />
           <Route path="/delete-resort" element={auth.role === 'admin' ? <DeleteResort /> : <Navigate to="/access-denied" />} />
           <Route path="/add_resort" element={auth.role === 'admin' ? <AddResort /> : <Navigate to="/access-denied" />} />

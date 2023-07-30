@@ -6,7 +6,7 @@ import reservationsReducer from './delete-reservation/deleteReservationSlice';
 
 const store = configureStore({
   reducer: {
-    myBookings, auth, resortsSlice, reservationsReducer,
+    myBookings, auth, resorts: resortsSlice, reservationsReducer,
   },
 });
 

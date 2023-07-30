@@ -7,7 +7,7 @@ import { createBookings } from '../redux/reservation/bookingsSlice';
 
 const ReservationForm = ({ resortId }) => {
   const dispatch = useDispatch();
-  const { resorts, loading } = useSelector((state) => state.resortsSlice);
+  const { resorts, loading } = useSelector((state) => state.resorts);
   const token = useSelector((state) => state.auth.token);
 
   const [formData, setFormData] = useState({

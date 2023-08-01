@@ -16,35 +16,6 @@ const DeleteResort = () => {
   const navigate = useNavigate();
 
   const handleDelete = (resortId) => {
-    // const deleteResort = async () => {
-    //   if (auth.role !== 'admin') {
-    //     setHasError("You don't have access to delete the resort.");
-    //     return;
-    //   }
-
-    //   setLoading(true);
-    //   const headers = {
-    //     Authorization: auth.token,
-    //   };
-    //   try {
-    //     await axios.delete(`/resorts/${resortId}`, { headers });
-
-    //     setResorts((prevState) => prevState.filter((item) => item.id !== resortId));
-
-    //     setLoading(false);
-    //     setHasError(null);
-    //   } catch (error) {
-    //     if (error.response.status === 401) {
-    //       setHasError('Unauthorize user! Please login before this action.');
-    //     } else if (error.response.status === 403) {
-    //       setHasError("You don't have permission to delete the resort!");
-    //     } else {
-    //       setHasError('Something went wrong! Please try again.');
-    //     }
-    //     setLoading(false);
-    //   }
-    // };
-    // deleteResort();
     if (auth.role !== 'admin') {
       navigate('/access-denied');
       return;

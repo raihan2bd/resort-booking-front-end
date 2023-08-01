@@ -32,7 +32,7 @@ const RegistrationForm = () => {
   }, [auth, navigate]);
 
   return (
-    <>
+    <div className="form-container shadow mt-4 p-3">
       <form onSubmit={handleSubmit} className="container mt-4">
         <h2 className="text-center my-3">Sign UP</h2>
         <div className="mb-3">
@@ -74,7 +74,7 @@ const RegistrationForm = () => {
           <Link className="ps-2" to="/login">Login</Link>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

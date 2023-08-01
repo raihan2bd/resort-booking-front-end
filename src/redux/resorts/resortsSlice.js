@@ -84,14 +84,6 @@ const resortSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // builder.addCase(fetchResorts.pending, () => ({
-    //   loading: true,
-    //   resorts: [],
-    //   hasError: false,
-    //   message: null,
-    //   redirect: false,
-    // }));
-
     builder.addCase(fetchResorts.fulfilled, (state, action) => {
       const updatedState = {
         ...state,
@@ -100,24 +92,6 @@ const resortSlice = createSlice({
       };
       return updatedState;
     });
-
-    // builder.addCase(fetchResorts.rejected, (state, action) => {
-    //   const updatedState = {
-    //     ...state,
-    //     resorts: [],
-    //     loading: false,
-    //     hasError: true,
-    //     message: action.payload,
-    //     redirect: false,
-    //   };
-    //   return updatedState;
-    // });
-
-    // add new resort reducer
-    // builder.addCase(addNewResort.pending, () => ({
-    //   ...initialState,
-    //   loading: true,
-    // }));
 
     builder.addCase(addNewResort.fulfilled, (state, { payload }) => {
       if (!payload) {
@@ -128,16 +102,6 @@ const resortSlice = createSlice({
       return { ...initialState, resorts: updatedResorts, redirect: true };
     });
 
-    // builder.addCase(addNewResort.rejected, (state, action) => ({
-    //   ...initialState,
-    //   resorts: state.resorts,
-    //   hasError: true,
-    //   message: action.payload,
-    // }));
-
-    // delete resort
-    // builder.addCase(deleteReosrt.pending, () => ({ ...initialState, loading: true }));
-
     builder.addCase(deleteReosrt.fulfilled, (state, { payload }) => {
       if (!payload) {
         return { ...state, redirect: false };
@@ -146,14 +110,6 @@ const resortSlice = createSlice({
 
       return { ...initialState, resorts: updatedResorts, redirect: false };
     });
-
-    // builder.addCase(deleteReosrt.rejected, (state, action) => ({
-    //   ...initialState,
-    //   resorts: state.resorts,
-    //   loading: false,
-    //   hasError: true,
-    //   message: action.payload,
-    // }));
   },
 });
 

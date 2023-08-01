@@ -14,7 +14,6 @@ const getVisibleItems = () => {
 };
 
 const MainPage = () => {
-  // const [resorts, setResorts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
 
@@ -24,16 +23,6 @@ const MainPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // const fetchResorts = async () => {
-    //   try {
-    //     const response = await axios.get('/resorts');
-    //     setResorts(response.data);
-    //   } catch (error) {
-    //     // space reserved for testing errors
-    //   }
-    // };
-
-    // fetchResorts();
     dispatch(fetchResorts());
 
     const handleResize = () => {

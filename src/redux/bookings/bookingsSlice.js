@@ -67,7 +67,7 @@ export const createBooking = createAsyncThunk(
 
 const initialState = {
   bookings: [],
-  redirect: true,
+  redirect: false,
 };
 
 const bookingsSlice = createSlice({
@@ -75,16 +75,6 @@ const bookingsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // builder.addCase(fetchMyBookings.pending, (state) => {
-    //   const updatedState = {
-    //     ...state,
-    //     myBookings: [],
-    //     loading: true,
-    //     error: null,
-    //   };
-    //   return updatedState;
-    // });
-
     builder.addCase(fetchBookings.fulfilled, (state, { payload }) => {
       if (!payload) {
         return { ...initialState };
@@ -102,14 +92,6 @@ const bookingsSlice = createSlice({
       if (!payload) {
         return { ...initialState };
       }
-
-      // const updatedBookings = [...state.bookings, {...payload.booking}]
-
-      // const updatedState = {
-      //   ...state,
-      //   bookings: updatedBookings,
-      //   redirect: true,
-      // };
       return { ...state, redirect: payload.redirect };
     });
   },

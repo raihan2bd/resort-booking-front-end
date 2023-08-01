@@ -69,7 +69,7 @@
 
  Visit our webpage here.
 
-- [Live Demo Link](https://resort-booking-front-end.onrender.com)
+- [Live Demo Link](https://resort-booking-front-end-c8l1.onrender.com)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

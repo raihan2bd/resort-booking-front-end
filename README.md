@@ -62,6 +62,10 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🚀 Live Demo <a name="live-demo"></a>
+- Project Overview:
+  ![Homepage](https://github.com/raihan2bd/resort-booking-front-end/assets/35267447/16d64fa7-4149-48a1-a480-05dfa0ae4efb)
+  
+  ![ResortDetailsPage](https://github.com/raihan2bd/resort-booking-front-end/assets/35267447/599b6085-e866-43eb-b602-a21050173bca)
 
  Visit our webpage here.
 

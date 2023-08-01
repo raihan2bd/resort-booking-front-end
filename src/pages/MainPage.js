@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchResorts } from '../redux/resorts/resortsSlice';
+import Spinner from '../components/UI/Spinner';
 
 const getVisibleItems = () => {
   if (window.innerWidth >= 768) {
@@ -12,21 +14,16 @@ const getVisibleItems = () => {
 };
 
 const MainPage = () => {
-  const [resorts, setResorts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
 
-  useEffect(() => {
-    const fetchResorts = async () => {
-      try {
-        const response = await axios.get('/resorts');
-        setResorts(response.data);
-      } catch (error) {
-        // space reserved for testing errors
-      }
-    };
+  const { loading, hasError, message } = useSelector((state) => state.ui);
+  const { resorts } = useSelector((state) => state.resorts);
 
-    fetchResorts();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchResorts());
 
     const handleResize = () => {
       setCurrentIndex(0);
@@ -41,7 +38,7 @@ const MainPage = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [dispatch]);
 
   const handleNext = () => {
     const visibleItems = getVisibleItems();
@@ -66,36 +63,46 @@ const MainPage = () => {
     });
   };
 
+  if (hasError && message) {
+    return <p className="text-center text-danger p-3 shadow">{message}</p>;
+  }
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <div className="page-content">
-      <div className="container mt-5" id="list">
+      <div className="container mt-2" id="list">
         <h1 className="LatestResort">LATEST RESORTS</h1>
         <p className="ResortSelect">Please select a resort</p>
         <div className="resorts-carousel" ref={carouselRef}>
           {resorts.length === 0 ? (
             <p>No resorts found</p>
           ) : (
-            <div className="resorts-list" style={{ transform: `translateX(-${currentIndex * (100 / getVisibleItems())}%)` }}>
+            <div className="resorts-list mx-4" style={{ transform: `translateX(-${currentIndex * (100 / getVisibleItems())}%)` }}>
               {resorts.map((resort) => (
                 <Link key={resort.id} to={`/details/${resort.id}`} className="resort-item">
-                  <img src={resort.image_url} alt={resort.name} className="img-thumbnail resort-image" />
-                  <h2>{resort.name}</h2>
-                  <p>
-                    <strong>Location:</strong>
-                    {' '}
-                    {resort.location}
-                  </p>
-                  <p>
-                    <strong>Price:</strong>
-                    {' '}
-                    $
-                    {resort.price}
-                  </p>
-                  <p>
-                    <strong>Guests:</strong>
-                    {' '}
-                    {resort.guests_amount}
-                  </p>
+                  <div className="border-rounded border shadow m-2">
+                    <img src={resort.image_url} alt={resort.name} className="img-thumbnail resort-image" />
+                    <h2>{resort.name}</h2>
+                    <p>
+                      <strong>Location:</strong>
+                      {' '}
+                      {resort.location}
+                    </p>
+                    <p>
+                      <strong>Price:</strong>
+                      {' '}
+                      $
+                      {resort.price}
+                    </p>
+                    <p>
+                      <strong>Guests:</strong>
+                      {' '}
+                      {resort.guests_amount}
+                    </p>
+                  </div>
                 </Link>
               ))}
             </div>

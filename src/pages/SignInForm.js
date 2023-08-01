@@ -27,8 +27,8 @@ const SignInForm = () => {
   }, [isAuth, navigate]);
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="container mt-4">
+    <div className="form-container shadow mt-4 p-3">
+      <form onSubmit={handleSubmit} className="container">
         <h2 className="text-center my-3">Login</h2>
         <div className="mb-3">
           <h2 htmlFor="email" className="form-label">Email:</h2>
@@ -59,7 +59,7 @@ const SignInForm = () => {
           <Link className="ps-2" to="/signup">Sign up</Link>
         </p>
       </div>
-    </>
+    </div>
   );
 };
 

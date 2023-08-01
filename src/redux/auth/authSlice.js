@@ -18,6 +18,7 @@ const logout = () => {
     expirationTime: null,
     message: null,
     loadingAuth: false,
+    hasError: false,
   };
 };
 
@@ -138,6 +139,7 @@ export const fetchLogin = createAsyncThunk(
             ? error.response.data
             : 'Something went wrong. Plese try again.'
         }`,
+        hasError: true,
       };
     }
   },
@@ -169,6 +171,10 @@ const myAuthSlice = createSlice({
     });
 
     builder.addCase(fetchLogin.fulfilled, (state, { payload }) => {
+      let hasError = false;
+      if (payload.hasError) {
+        hasError = payload.hasError;
+      }
       const updatedState = {
         ...state,
         isAuth: payload.isAuth,
@@ -178,6 +184,7 @@ const myAuthSlice = createSlice({
         expirationTime: payload.expirationTime,
         message: payload.message,
         loadingAuth: false,
+        hasError,
       };
 
       return updatedState;

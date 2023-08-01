@@ -50,14 +50,14 @@
   width: 300px;
 }
 
-.logo-image img{
+.logo-image img {
   width: 100%;
   padding: 0 1rem;
   background: transparent;
 }
 
 .btn-icon {
-  height: fit-content;
+  height: 100%;
 }
 
 nav ul {
@@ -117,7 +117,6 @@ nav p {
   .navigation {
     display: flex;
   }
-
 
   .show {
     display: none;

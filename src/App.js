@@ -19,7 +19,7 @@ import AccessDeniedPage from './pages/AccessDeniedPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 // set base api url
-axios.defaults.baseURL = 'http://localhost:4000';
+axios.defaults.baseURL = 'https://resort-booking-drdt.onrender.com';
 
 const App = () => {
   const auth = useSelector((state) => state.auth);

@@ -27,7 +27,7 @@
 
 
 # Rails Blog <a name="about-project"></a>
-> Resort booking is a full-stack web app that allows a user to manage their bookings. This is the front-end part of the project, if you want to see the back-end part, you can click [here](https://github.com/Thinus01/Resort_Booking_Back-end)
+Resort Booking is an innovative web application designed to empower travelers in finding and booking their dream resorts effortlessly. With an extensive collection of resorts and comprehensive details, users can explore diverse destinations, hand-picking their ideal getaway. The platform provides valuable insights into resort amenities, room types, and real-time availability, ensuring informed decision-making. Seamlessly managing bookings, users experience a hassle-free reservation process, making their vacation planning a breeze. With a user-friendly interface and an array of options, Resort Booking promises to redefine the way travelers embark on their next memorable journey. This is the front-end part, if you want to see the back-end part, you can click [here](https://github.com/raihan2bd/resort-booking-back-end)
 
 ## 🛠 Built With <a name="built-with"></a>
 ### Tech Stack <a name="tech-stack"></a>

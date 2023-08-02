@@ -1,5 +1,5 @@
 <a name="readme-top"></a>
-<h1 align='center'>Final Capstone - Resort Booking</h1>
+<h1 align='center'>Resort Booking</h1>
 
 
 # 📗 Table of Contents

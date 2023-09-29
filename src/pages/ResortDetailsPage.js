@@ -35,7 +35,7 @@ const ResortDetailsPage = () => {
     );
   } else {
     resortDetailsContent = (
-      <div className="container p-0">
+      <div className="container overflow-hidden">
         <div className="row">
           <div className="col-md-6 col-lg-6">
             <div className="p-3">

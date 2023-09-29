@@ -103,6 +103,17 @@ button:active {
   flex: 0 0 33.33%;
 }
 
+.resort-image {
+  width: 100% !important;
+  overflow: hidden;
+}
+
+.resort-image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 @media (max-width: 768px) {
   .resort-item {
     flex: 0 0 50%;
